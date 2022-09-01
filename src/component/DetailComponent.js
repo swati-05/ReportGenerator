@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ColorPicker from "elevate-ui/ColorPicker";
 import { Field, Formik } from 'formik';
-import { ChromePicker } from 'react-color';
-import ColorPick from './ColorPick';
 
 function DetailComponent() {
     return (

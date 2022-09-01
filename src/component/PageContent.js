@@ -9,7 +9,7 @@ function PageContent() {
         <>
             <div className='flex flex-row'>
                 <div className='flex'>
-                <SideNav />
+                {/* <SideNav /> */}
                 </div>
                 <div className='flex'>
                     {/* <PageLayComponent /> */}

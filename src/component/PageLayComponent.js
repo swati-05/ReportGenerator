@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import ColorPicker from "elevate-ui/ColorPicker";
+
 import { Field, Formik } from 'formik';
-import { ChromePicker } from 'react-color';
-import ColorPick from './ColorPick';
+
+
 import SideNav from './SideNav';
 import Design from './Design';
 // import { ToggleButton } from '@mui/material';
@@ -16,17 +16,22 @@ function PageLayComponent() {
     const [italicCheckValue, setitalicCheckValue] = useState(false)
     const [visibilityCheckValue, setvisibilityCheckValue] = useState(false)
 
+    const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
+    const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
+    const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
+
     return (
         <>
-            <div>
+            {/* <div>
                 <Design />
-            </div>
-            {/* <div className='flex flex-row'>
-                <div className='flex'>
+            </div> */}
+            <div className='flex flex-row'>
+                
+                {/* <div className='flex'>
                     <SideNav />
-                </div>
-                <div className='flex'>
+                </div> */}
 
+                <div className='flex w-full'>
                     <div>
                         <Formik
                             initialValues={{
@@ -66,249 +71,186 @@ function PageLayComponent() {
                                 handleBlur,
                                 handleSubmit,
                                 isSubmitting,
-                              
+
                             }) => (
                                 <form onSubmit={handleSubmit}>
 
 
-                                    <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
-                                        <table className="w-5/12 text-sm text-left text-gray-500 dark:text-gray-400">
-                                            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                                <tr>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Field Type
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Caption
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Field Name
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Resource
-                                                    </th>
+                                 
 
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Page no.
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        X
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Y
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Width
-                                                    </th>
+                                    <div className='w-full  bg-gray-700 '>
 
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Height
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Font Name
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Font Size
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        underline
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        bold
-                                                    </th>
-
-                                                    <th scope="col" className="py-3 px-6">
-                                                        italic
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Color
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Alignment
-                                                    </th>
-                                                    <th scope="col" className="py-3 px-6">
-                                                        Visible
-                                                    </th>
-
-                                                </tr>
-                                            </thead>
+                                        <table class=" bg-gray-600 mx-auto text-white w-full ">
                                             <tbody>
-                                                <tr className="bg-gray-400 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                                    
-                                                    <td className="py-4 px-6">
-                                                        <Field name="fieldType" as="select">
+                                                <tr className={`${inputContainerStyleTr}`}>
+                                                    <td className={`${inputContainerStyleTd} `}>
+                                                        <select name="fieldType" as="select" className={`${inputStyle} w-32`}>
+                                                            <option value="box">Field Type</option>
                                                             <option value="box">Box</option>
                                                             <option value="caption">Caption</option>
                                                             <option value="image">Image</option>
                                                             <option value="line">Line</option>
                                                             <option value="param">Param</option>
                                                             <option value="captionWR">CaptionWR</option>
-                                                        </Field>
+                                                        </select>
                                                     </td>
-                                                    <td className="py-4 px-6">
+                                                    <td className={`${inputContainerStyleTd} border`}>
                                                         <input
-                                                            type="caption"
+                                                            className={`${inputStyle}`}
+                                                            type="text"
                                                             name="caption"
+                                                            placeholder='caption'
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.caption}
                                                         />
                                                     </td>
-                                                    <td className="py-4 px-6">
+                                                    <td className={`${inputContainerStyleTd}border `}>
                                                         <input
-                                                            type="fieldName"
+                                                            className={`${inputStyle}`}
+                                                            type="text"
                                                             name="fieldName"
+                                                            placeholder='Field Name'
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.fieldName}
                                                         />
                                                     </td>
-                                                    <td className="py-4 px-6">
+                                                    <td className={`${inputContainerStyleTd} border`}>
                                                         <input
+                                                            className={`${inputStyle}`}
                                                             type="file"
                                                             name="resource"
+                                                            placeholder='resource'
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.resource}
                                                         />
                                                     </td>
-                                                    <td className="py-4 px-6">
+
+                                                    <td className={`${inputContainerStyleTd} border`}>
+                                                        <input type="text" className={`${inputStyle} w-12`} placeholder='X' />
+                                                        <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='Y' />
+                                                    </td>
+                                                    <td className={`${inputContainerStyleTd} border`}>
+                                                        <input type="text" className={`${inputStyle} w-12`} placeholder='H' />
+                                                        <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W' />
+                                                    </td>
+                                                    <td className={`${inputContainerStyleTd} border`}>
+
                                                         <input
-                                                            type="number"
+                                                            className={`${inputStyle} w-16`}
+                                                            type="text"
                                                             name="pageNo"
+                                                            placeholder='Page No.'
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.pageNo}
                                                         />
+                                                        <select name="fontSize" as="select" className={`${inputStyle} `}>
+                                                            <option value="arial">10</option>
+                                                            <option value="sans">15</option>
+                                                            <option value="serif">20</option>
+
+                                                        </select>
                                                     </td>
-                                                    <td className="py-4 px-6">
-                                                        <input
-                                                            type="horizontal"
-                                                            name="horizontal"
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            value={values.horizontal}
-                                                        />
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <input
-                                                            type="vertical"
-                                                            name="vertical"
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            value={values.vertical}
-                                                        />
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <input
-                                                            type="width"
-                                                            name="width"
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            value={values.width}
-                                                        />
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <input
-                                                            type="height"
-                                                            name="height"
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            value={values.height}
-                                                        />
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <Field name="fontName" as="select">
+                                                </tr>
+                                                <tr className={`${inputContainerStyleTr} mL-4`}>
+              
+                                                    <td className={`${inputContainerStyleTd} border`}>
+                                                        <select name="fontName" as="select" className={`${inputStyle}  w-32`}>
                                                             <option value="arial">Arial</option>
                                                             <option value="sans">Sans</option>
                                                             <option value="serif">Serif</option>
-                                                        </Field>
+
+                                                        </select>
                                                     </td>
-                                                    <td className="py-4 px-6">
-                                                      
-                                                        <input
-                                                            type="fontSize"
-                                                            name="fontSize"
-                                                            onChange={handleChange}
-                                                            onBlur={handleBlur}
-                                                            value={values.fontSize}
-                                                        />
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <label>
+                                                 
+
+                                                    <td className={`${inputContainerStyleTd} border`}>
+                                                        <span>
                                                             <Field
+                                                                className={`${inputStyle} bg-teal-300`}
+                                                                type="checkbox"
                                                                 name="underline"
-                                                                className="mr-2 leading-tight"
-                                                                type="checkbox"
                                                             />
-
-                                                        </label>
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <label>
+                                                            U </span>
+                                                        <span>
                                                             <Field
+                                                                className={`${inputStyle} bg-teal-300`}
+                                                                type="checkbox"
                                                                 name="bold"
-                                                                className="mr-2 leading-tight"
-                                                                type="checkbox"
                                                             />
-
-                                                        </label>
-                                                    </td>
-
-                                                    <td className="py-4 px-6">
-                                                        <label>
+                                                            B </span>
+                                                        <span>
                                                             <Field
-                                                                name="italic"
-                                                                className="mr-2 leading-tight"
+                                                                className={`${inputStyle} bg-teal-300`}
                                                                 type="checkbox"
+                                                                name="italic"
                                                             />
-
-                                                        </label>
-                                                    </td>
-                                                    <td className="py-4 px-6">
+                                                            I </span>
+                                                   
                                                         <input
+                                                            className='ml-4'
                                                             type="color"
                                                             name="hexColor"
                                                             id="hexColor"
                                                             onChange={handleChange} />
                                                     </td>
-                                                    <td className="py-4 px-6">
-
-                                                        <Field name="alignment" as="select">
-                                                            <option value="left">left</option>
-                                                            <option value="right">right</option>
-                                                            <option value="center">center</option>
-                                                        </Field>
-
-                                                    </td>
-                                                    <td className="py-4 px-6">
-                                                        <label>
+                                                    <td className={`${inputContainerStyleTd} border `}>
+                                              
+                                                        <span className='text-amber-300 '>Alignment</span>
+                                                       
+                                                        <span>
                                                             <Field
-                                                                name="visible"
-                                                                className="mr-2 leading-tight"
+                                                                className={`${inputStyle} bg-teal-300`}
                                                                 type="checkbox"
+                                                                name="left"
                                                             />
+                                                            left </span>
+                                                        <span>
+                                                            <Field
+                                                                className={`${inputStyle} bg-teal-300`}
+                                                                type="checkbox"
+                                                                name="right"
+                                                            />
+                                                            right </span>
+                                                        <span>
+                                                            <Field
+                                                                className={`${inputStyle} bg-teal-300`}
+                                                                type="checkbox"
+                                                                name="center"
+                                                            />
+                                                            center </span>
 
-                                                        </label>
                                                     </td>
-
-
+                                                    <td className={`${inputContainerStyleTd}border `}>
+                                                        <div className='flex -ml-12  '>
+                                                            <div className='flex-1  '>
+                                                                <p className='text-amber-300 '>Visibility</p>
+                                                            </div>
+                                                            <div className='flex-1  w-80 -ml-56 -mt-1 '>
+                                                                <span><input type="checkbox" className={`${inputStyle} bg-teal-300`} />  </span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
-                                                <button type="submit" disabled={isSubmitting} className="bg-green-300 px-5 py-2">
-                                                    Submit
-                                                </button>
 
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    <div className='bg-white float-right'>
+                                        <button type="submit" disabled={isSubmitting} className="bg-green-300 px-5 py-2">
+                                            Add
+                                        </button>
+                                    </div>
                                 </form>
                             )}
                         </Formik>
                     </div>
                 </div>
 
-            </div> */}
+            </div>
 
         </>
     )
