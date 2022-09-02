@@ -22,14 +22,12 @@ function PageLayComponent() {
 
     return (
         <>
-            {/* <div>
-                <Design />
-            </div> */}
+           
             <div className='flex flex-row'>
                 
-                {/* <div className='flex'>
+                <div className='flex'>
                     <SideNav />
-                </div> */}
+                </div> 
 
                 <div className='flex w-full'>
                     <div>
@@ -78,9 +76,9 @@ function PageLayComponent() {
 
                                  
 
-                                    <div className='w-full  bg-gray-700 '>
+                                    <div className='w-full  bg-cyan-700  text-center'>
 
-                                        <table class=" bg-gray-600 mx-auto text-white w-full ">
+                                        <table class=" bg-slate-400 mx-auto text-white w-full ">
                                             <tbody>
                                                 <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
@@ -132,10 +130,7 @@ function PageLayComponent() {
                                                         <input type="text" className={`${inputStyle} w-12`} placeholder='X' />
                                                         <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='Y' />
                                                     </td>
-                                                    <td className={`${inputContainerStyleTd} border`}>
-                                                        <input type="text" className={`${inputStyle} w-12`} placeholder='H' />
-                                                        <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W' />
-                                                    </td>
+                                                    
                                                     <td className={`${inputContainerStyleTd} border`}>
 
                                                         <input
@@ -148,14 +143,18 @@ function PageLayComponent() {
                                                             value={values.pageNo}
                                                         />
                                                         <select name="fontSize" as="select" className={`${inputStyle} `}>
-                                                            <option value="arial">10</option>
-                                                            <option value="sans">15</option>
-                                                            <option value="serif">20</option>
+                                                            <option value="">Font Size</option>
+                                                            <option value="">5</option>
+                                                            <option value="">10</option>
 
                                                         </select>
                                                     </td>
                                                 </tr>
                                                 <tr className={`${inputContainerStyleTr} mL-4`}>
+                                                <td className={`${inputContainerStyleTd} border`}>
+                                                        <input type="text" className={`${inputStyle} w-12`} placeholder='H' />
+                                                        <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W' />
+                                                    </td>
               
                                                     <td className={`${inputContainerStyleTd} border`}>
                                                         <select name="fontName" as="select" className={`${inputStyle}  w-32`}>
@@ -229,7 +228,7 @@ function PageLayComponent() {
                                                             <div className='flex-1  '>
                                                                 <p className='text-amber-300 '>Visibility</p>
                                                             </div>
-                                                            <div className='flex-1  w-80 -ml-56 -mt-1 '>
+                                                            <div className='flex-1  w-80 -ml-36 -mt-1 '>
                                                                 <span><input type="checkbox" className={`${inputStyle} bg-teal-300`} />  </span>
                                                             </div>
                                                         </div>

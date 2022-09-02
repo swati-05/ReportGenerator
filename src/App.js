@@ -5,12 +5,15 @@ import { Route, Routes } from 'react-router-dom';
 import PageContent from './component/PageContent';
 import PageLayComponent from './component/PageLayComponent';
 import DetailComponent from './component/DetailComponent';
+import GroupComponent from './component/GroupComponent';
 
 function App() {
   return (
 
     <div className="App">
+       <GroupComponent />
       <PageLayComponent />
+     
       <Routes>
         <Route path="/" element={<PageContent />} />
         <Route path="/pagelayot" element={<PageLayComponent />} />
