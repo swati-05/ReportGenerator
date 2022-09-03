@@ -76,7 +76,7 @@ function PageLayComponent() {
 
                                  
 
-                                    <div className='w-full  bg-cyan-700  text-center'>
+                                    <div className='w-full   text-center'>
 
                                         <table class=" bg-slate-400 mx-auto text-white w-full ">
                                             <tbody>

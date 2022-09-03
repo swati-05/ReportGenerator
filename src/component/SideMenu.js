@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import MenuSideGroupList from './MenuSideGroupList'
+import GroupComponent from './GroupComponent'
+import QueueIcon from '@mui/icons-material/Queue';
 
 function SideMenu(props) {
 
     const [addNewTemplate, setaddNewTemplate] = useState(false)
     const [templateInputValue, setTemplateInputValue] = useState('')
     const [templateCodeValue, setTemplateCodeValue] = useState('')
+    const [selectGropuIdValue, setselectGropuIdValue] = useState('')
+    const [selectTemplateTypeValue, setSelectTemplateTypeValue] = useState('')
     const [groupList, setgroupList] = useState([])
+    const [menuList, setmenuList] = useState([])
 
     const AddTemplate = () => {
 
@@ -15,7 +20,7 @@ function SideMenu(props) {
     }
 
     const SaveTemplate = () => {
-        const data = { templateName: templateInputValue, templateCode: templateCodeValue };
+        const data = { templateName: templateInputValue, templateCode: templateCodeValue, groupId: selectGropuIdValue, detailLayout: selectTemplateTypeValue };
         console.log('data from the form', data);
         axios({
             method: "post",
@@ -31,6 +36,24 @@ function SideMenu(props) {
     const getData = () => {
         axios({
             method: "GET",
+            url: "http://192.168.0.237:8000/api/getmenu",
+
+        })
+            .then(function (response) {
+                console.log("menulist", response.data);
+                setmenuList(response.data)
+
+            });
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+
+    console.log("tempData", templateInputValue, templateCodeValue, selectGropuIdValue, selectTemplateTypeValue)
+
+    const getMenuList = () => {
+        axios({
+            method: "GET",
             url: "http://192.168.0.237:8000/api/group/list",
 
         })
@@ -41,14 +64,17 @@ function SideMenu(props) {
             });
     }
     useEffect(() => {
-        getData()
+        getMenuList()
     }, [])
 
-    console.log("tempData", templateInputValue, templateCodeValue)
+
+    // console.log("menu list", menuList)
+
+
 
     return (
         <>
-            <div className='h-screen w-48 bg-gray-700'>
+            <div className='h-full w-48 bg-teal-500'>
                 <ul>
                     <li>
                         <button className=" text-gray-300 font-semibold py-2 px-4 rounded inline-flex items-center " onClick={AddTemplate}>
@@ -60,37 +86,78 @@ function SideMenu(props) {
 
                     </li>
                     {
-                        groupList?.map((data) => (
+                        menuList?.map((data) => (
                             <li>
-                                <MenuSideGroupList groupName={data?.search_group} groupId={data?.id} subMenustatus={true} />
+                              {console.log('submenu data ', data?.sub_menu)}
+                               {console.log('submenu data type', data?.submenu)} 
+                                <MenuSideGroupList menuGroupName={data?.menu_name} menuGroupId={data?.menu_id} subMenustatus={true} subMenu={data?.sub_menu}  />
                             </li>
                         ))
                     }
+
+
                 </ul>
 
             </div>
-            <div className={` ${addNewTemplate ? '' : 'hidden'} absolute text-left bg-gray-50  w-3/12 h-56  p-1 top-20 left-50  z-50 `}>
+            <div className={` ${addNewTemplate ? '' : 'hidden'} absolute   top-[10rem] left-[20rem] `}>
+                <div class="overflow-hidden shadow-lg  h-90 w-2/5  m-auto">
+                    <img alt="eggs" src="https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/tp183-kul-presentation-10.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=75350cd9a92c664628ee492d4f55999b" class="" />
+                    <div class="bg-white w-full p-4 relative">
+                        <button aria-label="Go to article" type="button" class="absolute rounded-full bg-indigo-500 text-white w-12 h-12 right-8 -top-6" onClick={SaveTemplate}>
 
-                <span >
-                    <select className=' bg-slate-200 text-sm w-36 border-2 ml-8 mt-5' placeholder='select group'>
-                        <option> select group </option>
-                    </select>
-                </span>
-                <span>
-                    <button className='bg-green-400  ml-2 p-0  '>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
+                            <QueueIcon />
+                        </button>
+                        <p className='text-bold font-sans'>ADD TEMPLATE</p>
+                        <div className='flex'>
 
-                    </button>
-                </span>
-                <p className='text-black text-xs ml-8 mt-4'>Template Name</p>
-                <input type="text" name='templateName' value={templateInputValue} onChange={(e) => setTemplateInputValue(e.target.value)}
-                    className='bg-gray-500 w-40 ml-8' />
-                <p className='text-black text-xs ml-8'>Template Code </p>
-                <input type="text" name='templateName' value={templateCodeValue} onChange={(e) => setTemplateCodeValue(e.target.value)}
-                    className='bg-gray-500 w-40 ml-8' />
-                <button className='bg-green-500 float-right mt-1'> <p className='text-white text-xs w-10 ' onClick={SaveTemplate}>ADD</p> </button>
+                            <div className='flex-1'>
+                                <select className=' bg-slate-200 text-sm w-36 border-2 ml-2 mt-5' placeholder='select group' onChange={(e) => setselectGropuIdValue(e.target.value)}>
+                                    <option> select group </option>
+                                    {
+                                        groupList?.map((data) => (
+                                            <option value={data?.id}>{data?.search_group}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+
+                            <div className='flex-1 mt-4 ml-2 rounded-xl h-8 bg-green-400'>
+                                <GroupComponent />
+                            </div>
+                        </div>
+
+
+                        <div className='flex p-2 mt-1'>
+                            <div className='flex-1 text-xs' ><span>Template Name</span> </div>
+                            <div className='flex-1'> <input type="text" className='bg-slate-200' name='templateName' value={templateInputValue} onChange={(e) => setTemplateInputValue(e.target.value)} /></div>
+                        </div>
+                        <div className='flex p-2'>
+                            <div className='flex-1 text-xs' ><span>Template Code</span> </div>
+                            <div className='flex-1'> <input type="text" className='bg-slate-200' name='templateCode' value={templateCodeValue} onChange={(e) => setTemplateCodeValue(e.target.value)} /></div>
+                        </div>
+
+                        <div className='flex p-2'>
+                            <div className='flex-1 text-xs -ml-2' ><span>Template Type</span> </div>
+                            <div className='flex-1 -mt-6'>
+                                <select className=' bg-slate-200 text-sm w-[11.3rem] border-2  mt-5' placeholder='select group' onChange={(e) => setSelectTemplateTypeValue(e.target.value)}>
+                                    <option  >select</option>
+                                    <option value="General">General</option>
+                                    <option value="Label">Label</option>
+                                    <option value="Form"> Form</option>
+                                    <option value="Document">Document</option>
+                                </select>
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
 
             </div>
         </>
