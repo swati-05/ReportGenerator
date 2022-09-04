@@ -6,13 +6,23 @@ import PageContent from './component/PageContent';
 import PageLayComponent from './component/PageLayComponent';
 import DetailComponent from './component/DetailComponent';
 import GroupComponent from './component/GroupComponent';
+import FooterComponent from './component/FooterComponent';
+import PageLayoutTable from './component/PageLayoutTable';
+import SideMenu from './component/SideMenu';
+import SettingComponent from './component/SettingComponent';
 
 function App() {
   return (
 
     <div className="App">
-       <GroupComponent />
-      <PageLayComponent />
+      <SettingComponent/>
+      <SideMenu/>
+
+      {/* <PageLayoutTable/> */}
+       {/* <GroupComponent /> */}
+       {/* <DetailComponent />
+       <FooterComponent/>
+      <PageLayComponent /> */}
      
       <Routes>
         <Route path="/" element={<PageContent />} />

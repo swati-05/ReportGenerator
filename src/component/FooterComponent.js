@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Field, Formik } from 'formik';
 import SideNav from './SideNav';
-import Design from './Design';
 
+function FooterComponent() {
 
-function PageLayComponent() {
-    const [underlineCheckValue, setunderlineCheckValue] = useState(false)
-    const [boldCheckValue, setboldCheckValue] = useState(false)
-    const [italicCheckValue, setitalicCheckValue] = useState(false)
-    const [visibilityCheckValue, setvisibilityCheckValue] = useState(false)
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
-
     return (
         <>
-           
-            <div className='flex flex-row'>
+   <div className='flex flex-row'>
                 
                 <div className='flex'>
                     <SideNav />
@@ -31,7 +24,7 @@ function PageLayComponent() {
                                 fieldType: '',
                                 fieldName: '',
                                 resource: '',
-                                pageNo: '',
+                                // pageNo: '',
                                 horizontal: '',
                                 vertical: '',
                                 width: '',
@@ -127,7 +120,7 @@ function PageLayComponent() {
                                                     
                                                     <td className={`${inputContainerStyleTd} border`}>
 
-                                                        <input
+                                                        {/* <input
                                                             className={`${inputStyle} w-16`}
                                                             type="text"
                                                             name="pageNo"
@@ -135,7 +128,7 @@ function PageLayComponent() {
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.pageNo}
-                                                        />
+                                                        /> */}
                                                         <select name="fontSize" as="select" className={`${inputStyle} `}>
                                                             <option value="">Font Size</option>
                                                             <option value="">5</option>
@@ -249,4 +242,4 @@ function PageLayComponent() {
     )
 }
 
-export default PageLayComponent
+export default FooterComponent
