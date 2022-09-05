@@ -10,26 +10,33 @@ import FooterComponent from './component/FooterComponent';
 import PageLayoutTable from './component/PageLayoutTable';
 import SideMenu from './component/SideMenu';
 import SettingComponent from './component/SettingComponent';
+import SideNav from './component/SideNav';
 
 function App() {
   return (
 
-    <div className="App">
+    <div>
+
+      <SideNav />
+      {/* <PageLayComponent /> */}
+
+      {/* <PageLayoutTable />
+      <GroupComponent />
+      <DetailComponent />
+      <FooterComponent/>
       <SettingComponent/>
-      <SideMenu/>
+      <SideMenu/> */}
 
-      {/* <PageLayoutTable/> */}
-       {/* <GroupComponent /> */}
-       {/* <DetailComponent />
-       <FooterComponent/>
-      <PageLayComponent /> */}
-     
-      <Routes>
-        <Route path="/" element={<PageContent />} />
-        <Route path="/pagelayot" element={<PageLayComponent />} />
-        <Route path="/detailPage" element={<DetailComponent />} />
+      <div className='border'>
+        <Routes>
+          <Route path="/" element={<PageContent />} />
+          <Route path="/pagelayout/:templateId" element={<PageLayComponent />} />
+          <Route path="/detailPage" element={<DetailComponent />} />
+          <Route path="/footerPage" element={<FooterComponent />} />
+          {/* <Route path="/detailLayout/:layoutId" element={<FooterComponent />} /> */}
 
-      </Routes>
+        </Routes>
+      </div>
     </div>
   );
 }

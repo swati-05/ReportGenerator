@@ -74,7 +74,7 @@ function SideMenu(props) {
 
     return (
         <>
-            <div className='p-1 '>
+            <div className=''>
                 <div className='h-screen w-48 shadow-xl ' style={{ 'backgroundColor': '#1C4E80' }}>
                     <ul>
                         <li>
