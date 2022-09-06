@@ -52,7 +52,7 @@ function MenuSideGroupList(props) {
 
                 {
                     !props.subMenuStatus &&
-                    <div className={`${menuHeight} transition-all duration-1000 z-20 overflow-hidden bg-slate-200 `}>
+                    <div className={`${menuHeight} transition-all duration-1000  overflow-hidden ml-8 `}>
                         {
                             props.subMenu.map((menuData) => (
                                 <li className='flex items-center  hover:bg-sky-100 hover:border-l-2 hover:border-indigo-600  hover:text-blue-500  text-gray-600' style={{ 'width': '250px' }}>
@@ -60,7 +60,7 @@ function MenuSideGroupList(props) {
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-yellow-500">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
-                                        <label className='ml-1' value={menuData?.menu_id}> {menuData?.menu_name}</label>
+                                        <label className='ml-1 ' value={menuData?.menu_id}> {menuData?.menu_name}</label>
                                        <SubMenuLevel2 subMenuLevel2  = {menuData.submenu} reportTemplate_id={menuData?.menu_id}/>
                                     </button>
                                 </li>

@@ -75,7 +75,7 @@ function SideMenu(props) {
     return (
         <>
             <div className=''>
-                <div className='h-screen w-48 shadow-xl ' style={{ 'backgroundColor': '#1C4E80' }}>
+                <div className='h-screen w-56 shadow-xl ' style={{ 'backgroundColor': '#1C4E80' }}>
                     <ul>
                         <li>
                             <button className=" text-gray-100 font-semibold py-2 px-4 rounded inline-flex items-center " onClick={AddTemplate}>

@@ -31,9 +31,14 @@ function App() {
         <Routes>
           <Route path="/" element={<PageContent />} />
           <Route path="/pagelayout/:templateId" element={<PageLayComponent />} />
+          <Route path="/detailPage/:templateId" element={<DetailComponent />} />
+          <Route path="/footerPage/:templateId" element={<FooterComponent />} />
+
+          
+          {/* <Route path="/pagelayout" element={<PageLayComponent />} />
           <Route path="/detailPage" element={<DetailComponent />} />
           <Route path="/footerPage" element={<FooterComponent />} />
-          {/* <Route path="/detailLayout/:layoutId" element={<FooterComponent />} /> */}
+          <Route path="/detailLayout/:layoutId" element={<FooterComponent />} /> */}
 
         </Routes>
       </div>
