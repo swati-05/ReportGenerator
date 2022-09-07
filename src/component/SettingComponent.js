@@ -3,6 +3,8 @@ import React from 'react'
 
 
 function SettingComponent() {
+
+    
     return (
         <>
             {/* <div className='ml-64'>

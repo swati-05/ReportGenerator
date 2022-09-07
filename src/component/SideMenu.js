@@ -14,6 +14,12 @@ function SideMenu(props) {
     const [groupList, setgroupList] = useState([])
     const [menuList, setmenuList] = useState([])
 
+
+    const [menuHeight, setmenuHeight] = useState('h-0')
+    const toggleMenu = () => {
+        menuHeight == 'h-0' ? setmenuHeight('h-screen') : setmenuHeight('h-0')
+    }
+
     const AddTemplate = () => {
 
         addNewTemplate ? setaddNewTemplate(false) : setaddNewTemplate(true)
@@ -39,11 +45,11 @@ function SideMenu(props) {
             url: "http://192.168.0.237:8000/api/getmenu",
 
         })
-            .then(function (response) {
-                console.log("menulist", response.data);
-                setmenuList(response.data)
+        .then(function (response) {
+            console.log("menulist", response.data);
+            setmenuList(response.data)
 
-            });
+        });
     }
     useEffect(() => {
         getData()
@@ -74,15 +80,16 @@ function SideMenu(props) {
 
     return (
         <>
-            <div className=''>
-                <div className='h-screen w-56 shadow-xl ' style={{ 'backgroundColor': '#1C4E80' }}>
+            <div className='w-12 bg-red-200'>
+            {/* <button className='bg-red-300 h-8  w-16 - p-2 rounded-r-full' onClick={toggleMenu} >menu</button> */}
+                <div className={`${menuHeight} h-screen w-44 shadow-xl bg-white `}  >
                     <ul>
                         <li>
-                            <button className=" text-gray-100 font-semibold py-2 px-4 rounded inline-flex items-center " onClick={AddTemplate}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-100">
+                            <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span className='ml-1'>Default Template</span>
+                                <span className=''>Default Template</span>
                             </button>
 
                         </li>
