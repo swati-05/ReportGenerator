@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Field, Formik } from 'formik';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Setting from './Setting';
 
 function FooterComponent() {
+    let { templateId, groupId, menuTempName, menuTempCode } = useParams();
 
-    let { templateId } = useParams();
+
+
+    // let { templateId } = useParams();
     const reportTemplate_id = templateId
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
@@ -19,7 +23,7 @@ function FooterComponent() {
 
 
     const SubmitPageRecord = () => {
-       
+
 
         console.log('data from footer', addFooterRecordTable);
 
@@ -37,8 +41,16 @@ function FooterComponent() {
 
     return (
         <>
-            <div className='w-10/12 ml-56 -mt-[38.8rem]'>
-                <div className=' w-full'>
+            {/* w-10/12 ml-56 -mt-[38.8rem] */}
+            <div className='w-full'>
+                <div className=' w-full '>
+                    <div className='bg-white float-right'>
+                        {/* <button className="bg-yellow-200 px-8 py-1 drop-shadow-lg ">Preview</button> */}
+
+                        <button className="bg-purple-300 px-6 py-1 -ml-6 drop-shadow-lg hidden" >Setting</button>
+
+
+                    </div>
                     <div>
                         <Formik
                             initialValues={{
@@ -89,8 +101,8 @@ function FooterComponent() {
 
                                     <div className='w-full  text-center '>
 
-                                        <h1 className='text-teal-400'>Foother component</h1>
-                                        <table class=" bg-slate-400 text-white w-full ">
+                                       
+                                        <table class=" bg-sky-100 text-black w-full">
                                             <tbody>
                                                 <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
@@ -253,16 +265,17 @@ function FooterComponent() {
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        <button type="submit" disabled={isSubmitting} className="bg-green-300 px-8 py-1  ml-9 ">
+                                                            Add
+                                                        </button>
+                                                    </td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className='bg-white float-right'>
-                                        <button type="submit" disabled={isSubmitting} className="bg-green-300 px-5 py-2">
-                                            Add
-                                        </button>
-                                    </div>
+
                                 </form>
                             )}
                         </Formik>
@@ -270,20 +283,13 @@ function FooterComponent() {
                 </div>
 
             </div>
-             {/* mapping data field and setting the view */}
-             <div className='py-16'>
-                <div class="flex flex-col justify-center h-full">
+            {/* mapping data field and setting the view */}
+            <div className='py-6'>
+                <div class="flex flex-col justify-center h-full border-b-2">
 
-                    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-                        <header class="px-5 py-4 border-b border-gray-100">
-                            <span class="font-semibold text-gray-800 text-left">Page Layout Record</span>
-                            <span className='float-right'>
-                                <button className='bg-indigo-500 px-5 py-1' onClick={SubmitPageRecord}>
-                                    Submit
-                                </button>
-                            </span>
-                        </header>
+                    <div class=" bg-white  border-gray-200 border-t">
 
+                        <span class="font-semibold text-gray-800">Page Layout Records</span>
                         <div class="overflow-x-auto p-3">
                             <table class="table-auto w-full">
                                 <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
@@ -353,11 +359,22 @@ function FooterComponent() {
                             </table>
                         </div>
 
-
+                        <footer class="px-5 py-4 ">
+                            <span className='float-right'>
+                                <button className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
+                                    Submit All
+                                </button>
+                            </span>
+                        </footer>
 
                     </div>
 
                 </div>
+            </div>
+
+            {/*this component is kept hidden */}
+            <div className="hidden">
+                <Setting Footer={addFooterRecordTable} />
             </div>
 
         </>

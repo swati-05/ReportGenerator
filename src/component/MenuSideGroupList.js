@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import SubMenuLevel2 from './SubMenuLevel2';
+import Setting from './Setting';
 
 function MenuSideGroupList(props) {
+
+
+
 
     const [menuList, setmenuList] = useState('w-0')
     const menuClick = () => {
@@ -45,7 +49,7 @@ function MenuSideGroupList(props) {
     // }, [])
 
     console.log("sub menu first level ...", props.subMenu)
-    // console.log("sub menu type ...", props.subMenuType)
+    console.log("group name ...", props.subMenuStatus)
 
     return (
         <>
@@ -66,7 +70,7 @@ function MenuSideGroupList(props) {
                 </div>
                 {
                     !props.subMenuStatus &&
-                    <div className={`${menuList} absolute  -mt-[2rem] bg-white transition-all duration-1000 ml-44 overflow-hidden  `}>
+                    <div className={`${menuList} absolute z-10 -mt-[2rem] bg-white transition-all duration-1000 ml-44 overflow-hidden  `}>
                         {
                             props.subMenu.map((menuData) => (
                                 <>
@@ -77,12 +81,19 @@ function MenuSideGroupList(props) {
                                                 <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                                             </svg>
 
-                                            <label className=' w-36 text-sm p-2 text-left' value={menuData?.menu_id}> {menuData?.menu_name}</label>
+                                            <label className=' w-36 text-sm p-2 text-left' value={menuData?.menu_id}>{menuData?.menu_id} {menuData?.menu_name}</label>
 
                                         </button>
                                     </div>
                                     <SubMenuLevel2
-                                        values={{menuGroupId:props.menuGroupId,menuTempName:menuData?.menu_name,menuTempCode:menuData?.menu_code,subMenuStatus:subMenuStatus,subMenuLevel2:menuData.submenu,reportTemplate_id:menuData?.menu_id}}
+                                        values={{
+                                            menuGroupId: props.menuGroupId,
+                                            menuTempName: menuData?.menu_name,
+                                            menuTempCode: menuData?.menu_code,
+                                            subMenuStatus: subMenuStatus,
+                                            subMenuLevel2: menuData.submenu,
+                                            reportTemplate_id: menuData?.menu_id
+                                        }}
                                     />
                                 </>
                             ))
@@ -90,7 +101,10 @@ function MenuSideGroupList(props) {
                     </div>
 
                 }
+
             </div>
+
+
         </>
     )
 }

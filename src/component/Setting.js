@@ -1,11 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Field, useFormik } from 'formik';
 
 function Setting(props) {
 
-    console.log("grp id in setting.....", props.groupId)
-    console.log("name id in setting.....", props.menuTempName)
-    console.log("code id in setting.....", props.menuTempCode)
+    // console.log("grp id in setting.....", props.groupId)
+    // console.log("name id in setting.....", props.menuTempName)
+    // console.log("code id in setting.....", props.menuTempCode)
+    console.log("layout....", props.Layout)
+    console.log("detail....", props.Detail)
+    console.log("footer....", props.Footer)
+   
+
+    const [templateLayout, setTemplateLayout] = useState([])
+    console.log('collective form values : ',templateLayout);
 
     const formik = useFormik({
         initialValues: {
@@ -37,13 +44,20 @@ function Setting(props) {
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
+            setTemplateLayout({...templateLayout,['values']:values});
+            setTemplateLayout({...templateLayout,values,['layout']:props.Layout });
+            setTemplateLayout({...templateLayout, values, ['Detail']:props.Detail});
+            setTemplateLayout({...templateLayout, values, ['footer']:props.Footer});
         },
     });
     return (
+
+        
+
         <div>
             <form onSubmit={formik.handleSubmit}>
 
-                <div class="grid grid-cols-4  border bg-blue-200">
+                <div class="grid grid-cols-4 z-20 border bg-blue-200">
                     <div class="col-span-2 ">
                         <div className='p-1'>
                             <span>
@@ -388,10 +402,10 @@ function Setting(props) {
                                     <input
                                         className='bg-slate-100 w-96 ml-2 h-32 border border-black'
                                         type="text"
-                                        name="labelColumnCount"
+                                        name="layoutSql"
 
                                         onChange={formik.handleChange}
-                                        value={formik.values.caption}
+                                        value={formik.values.layoutSql}
                                     />
                                 </span>
                             </label>
