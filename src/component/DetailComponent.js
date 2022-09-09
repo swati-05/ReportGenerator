@@ -102,7 +102,7 @@ function DetailComponent() {
                                 <form onSubmit={handleSubmit}>
                                     <div className='w-full  text-center'>
                                         {/* <h1 className='text-teal-400'>Details component</h1> */}
-                                        <table class=" bg-sky-100 text-black w-full ">
+                                        <table class=" bg-teal-300 text-black w-full ">
                                             <tbody>
                                                 <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
@@ -267,16 +267,25 @@ function DetailComponent() {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                            <button type="submit" disabled={isSubmitting} className="bg-green-300 px-8 py-1  ml-9 ">
-                                                                Add
-                                                            </button>
-                                                        </td>
+                                                        <button type="submit" disabled={isSubmitting} className="bg-slate-100 px-8 py-1  ml-9 ">
+                                                            Add
+                                                        </button>
+                                                    </td>
                                                 </tr>
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    
+                                    <div className='w-full'>
+
+                                        <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                                            name="width"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.width}
+                                        />
+
+                                    </div>
                                 </form>
                             )}
                         </Formik>

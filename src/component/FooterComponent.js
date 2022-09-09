@@ -101,8 +101,8 @@ function FooterComponent() {
 
                                     <div className='w-full  text-center '>
 
-                                       
-                                        <table class=" bg-sky-100 text-black w-full">
+
+                                        <table class=" bg-teal-300 text-black w-full">
                                             <tbody>
                                                 <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
@@ -266,7 +266,7 @@ function FooterComponent() {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button type="submit" disabled={isSubmitting} className="bg-green-300 px-8 py-1  ml-9 ">
+                                                        <button type="submit" disabled={isSubmitting} className="bg-slate-100 px-8 py-1  ml-9 ">
                                                             Add
                                                         </button>
                                                     </td>
@@ -275,7 +275,16 @@ function FooterComponent() {
                                             </tbody>
                                         </table>
                                     </div>
+                                    <div className='w-full'>
 
+                                        <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                                            name="width"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.width}
+                                        />
+
+                                    </div>
                                 </form>
                             )}
                         </Formik>

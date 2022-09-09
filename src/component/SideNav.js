@@ -5,7 +5,7 @@ import SideMenu from './SideMenu'
 function SideNav() {
   return (
     <>
-      <div className='h-screen w-48 bg-gray-300'>
+      <div className=''>
         {/* <MenuComponent /> */}
         <SideMenu/>
       </div>

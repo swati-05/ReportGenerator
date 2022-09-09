@@ -9,7 +9,7 @@ function SideMenu(props) {
     const [addNewTemplate, setaddNewTemplate] = useState(false)
     const [templateInputValue, setTemplateInputValue] = useState('')
     const [templateCodeValue, setTemplateCodeValue] = useState('')
-    const [selectGropuIdValue, setselectGropuIdValue] = useState('')
+    const [searchGroupIdValue, setSearchGroupIdValue] = useState('')
     const [selectTemplateTypeValue, setSelectTemplateTypeValue] = useState('')
     const [groupList, setgroupList] = useState([])
     const [menuList, setmenuList] = useState([])
@@ -26,7 +26,7 @@ function SideMenu(props) {
     }
 
     const SaveTemplate = () => {
-        const data = { templateName: templateInputValue, templateCode: templateCodeValue, groupId: selectGropuIdValue, detailLayout: selectTemplateTypeValue };
+        const data = { templateName: templateInputValue, templateCode: templateCodeValue, searchGroupId: searchGroupIdValue, detailLayout: selectTemplateTypeValue };
         console.log('data from the form', data);
         axios({
             method: "post",
@@ -39,6 +39,7 @@ function SideMenu(props) {
 
             });
     }
+    
     const getData = () => {
         axios({
             method: "GET",
@@ -55,7 +56,7 @@ function SideMenu(props) {
         getData()
     }, [])
 
-    console.log("tempData", templateInputValue, templateCodeValue, selectGropuIdValue, selectTemplateTypeValue)
+    console.log("tempData", templateInputValue, templateCodeValue, searchGroupIdValue, selectTemplateTypeValue)
 
     const getMenuList = () => {
         axios({
@@ -82,14 +83,14 @@ function SideMenu(props) {
         <>
             <div className='w-12 bg-red-200'>
             {/* <button className='bg-red-300 h-8  w-16 - p-2 rounded-r-full' onClick={toggleMenu} >menu</button> */}
-                <div className={`${menuHeight} h-screen w-44 shadow-xl bg-white `}  >
+                <div className={`${menuHeight} h-screen w-48  shadow-xl bg-white `}  >
                     <ul>
                         <li>
                             <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-500">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span className=''>Default Template</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ml-1">
+                                <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
+                            </svg>
+                                <span className='ml-1'>Default Template</span>
                             </button>
 
                         </li>
@@ -119,7 +120,7 @@ function SideMenu(props) {
                             <div className='flex'>
 
                                 <div className='flex-1'>
-                                    <select className=' bg-slate-200 text-sm w-36 border-2 ml-2 mt-5' placeholder='select group' onChange={(e) => setselectGropuIdValue(e.target.value)}>
+                                    <select className=' bg-slate-200 text-sm w-36 border-2 ml-2 mt-5' name='searchGroupId' placeholder='select group' onChange={(e) => setSearchGroupIdValue(e.target.value)}>
                                         <option> select group </option>
                                         {
                                             groupList?.map((data) => (

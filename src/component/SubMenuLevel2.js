@@ -10,7 +10,7 @@ function SubMenuLevel2(props) {
     showSetting == 'hidden' ? setshowSetting('block') : setshowSetting('hidden')
   }
 
-  const { menuGroupId, menuTempName, menuTempCode, subMenuStatus, subMenuLevel2, reportTemplate_id } = props.values;
+  // const {  menuTempName, menuTempCode, subMenuStatus, subMenuLevel2, reportTemplate_id } = props.values;
   const [menuHeight, setmenuHeight] = useState('h-0')
   const openSubMenu = () => {
     if (menuHeight == 'w-0') {
@@ -26,7 +26,7 @@ function SubMenuLevel2(props) {
 
 
 
-      <div className={`${subMenuStatus} transition-all duration-1000  overflow-hidden ml-8 `}>
+      {/* <div className={`${subMenuStatus} transition-all duration-1000  overflow-hidden ml-8 `}>
         <>
         {
           subMenuLevel2?.map((data) => (
@@ -47,7 +47,7 @@ function SubMenuLevel2(props) {
           ))
         }
         </>
-      </div>
+      </div> */}
 
       {/* <div className='bg-white float-right'>
         <button className="bg-yellow-200 px-8 py-1 drop-shadow-lg ">Preview</button>
