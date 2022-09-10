@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Setting from './Setting';
 
-function FooterComponent() {
+function FooterComponent(props) {
     let { templateId, groupId, menuTempName, menuTempCode } = useParams();
 
 
@@ -16,6 +16,8 @@ function FooterComponent() {
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
 
+
+    const [footerSqlValue, setfooterSqlValue] = useState()
     const [addFooterRecordTable, setAddFooterRecordTable] = useState([]);
     console.log("detail form data ", addFooterRecordTable);
 
@@ -24,19 +26,20 @@ function FooterComponent() {
 
     const SubmitPageRecord = () => {
 
-
+        props.collectAllLayoutDataFun('footer', addFooterRecordTable);
+        // props.collectAllLayoutDataFun('footer_data', footerSqlValue);
         console.log('data from footer', addFooterRecordTable);
 
-        axios({
-            method: "post",
-            url: "http://192.168.0.237:8000/api/templateFtr/save",
-            data: addFooterRecordTable,
-        })
-            .then(function (response) {
-                console.log("post data", response.data);
+        //     axios({
+        //         method: "post",
+        //         url: "http://192.168.0.237:8000/api/templateFtr/save",
+        //         data: addFooterRecordTable,
+        //     })
+        //         .then(function (response) {
+        //             console.log("post data", response.data);
 
 
-            });
+        //         });
     }
 
     return (
@@ -44,13 +47,6 @@ function FooterComponent() {
             {/* w-10/12 ml-56 -mt-[38.8rem] */}
             <div className='w-full'>
                 <div className=' w-full '>
-                    <div className='bg-white float-right'>
-                        {/* <button className="bg-yellow-200 px-8 py-1 drop-shadow-lg ">Preview</button> */}
-
-                        <button className="bg-purple-300 px-6 py-1 -ml-6 drop-shadow-lg hidden" >Setting</button>
-
-
-                    </div>
                     <div>
                         <Formik
                             initialValues={{
@@ -266,7 +262,7 @@ function FooterComponent() {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button type="submit" disabled={isSubmitting} className="bg-slate-100 px-8 py-1  ml-9 ">
+                                                    <button type="submit" disabled={isSubmitting} className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
                                                             Add
                                                         </button>
                                                     </td>
@@ -275,19 +271,17 @@ function FooterComponent() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className='w-full'>
-
-                                        <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
-                                            name="width"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.width}
-                                        />
-
-                                    </div>
+                                    
                                 </form>
                             )}
                         </Formik>
+                        <div className='w-full'>
+                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                                name="detail_data"
+                                value={footerSqlValue} onChange={(e) => setfooterSqlValue(e.target.value)}
+
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -370,7 +364,7 @@ function FooterComponent() {
 
                         <footer class="px-5 py-4 ">
                             <span className='float-right'>
-                                <button className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
+                                <button type="button" className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
                                     Submit All
                                 </button>
                             </span>

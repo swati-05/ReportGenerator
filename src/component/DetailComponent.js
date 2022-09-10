@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Setting from './Setting';
 
 
-function DetailComponent() {
+function DetailComponent(props) {
 
     let { templateId, groupId, menuTempName, menuTempCode } = useParams();
 
@@ -18,7 +18,7 @@ function DetailComponent() {
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
 
-
+    const [detailSqlValue, setdetailSqlValue] = useState()
     const [addDetailRecordTable, setAddDetailRecordTable] = useState([]);
     console.log("detail form data ", addDetailRecordTable);
 
@@ -27,20 +27,22 @@ function DetailComponent() {
 
     const SubmitPageRecord = () => {
 
+        props.collectAllLayoutDataFun('detail', addDetailRecordTable);
+        // props.collectAllLayoutDataFun('detail_data', detailSqlValue);
 
         console.log('data from detail', addDetailRecordTable);
 
-        axios({
-            method: "post",
-            url: "http://192.168.0.237:8000/api/templateDtl/save",
-            data: addDetailRecordTable,
-        })
-            .then(function (response) {
-                console.log("post data", response.data);
+    //     axios({
+    //         method: "post",
+    //         url: "http://192.168.0.237:8000/api/templateDtl/save",
+    //         data: addDetailRecordTable,
+    //     })
+    //         .then(function (response) {
+    //             console.log("post data", response.data);
 
 
-            });
-    }
+    //         });
+   }
 
 
     return (
@@ -267,7 +269,7 @@ function DetailComponent() {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button type="submit" disabled={isSubmitting} className="bg-slate-100 px-8 py-1  ml-9 ">
+                                                    <button type="submit" disabled={isSubmitting} className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
                                                             Add
                                                         </button>
                                                     </td>
@@ -276,19 +278,17 @@ function DetailComponent() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className='w-full'>
-
-                                        <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
-                                            name="width"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.width}
-                                        />
-
-                                    </div>
+                                    
                                 </form>
                             )}
                         </Formik>
+                        <div className='w-full'>
+                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                                name="detail_data"
+                                value={detailSqlValue} onChange={(e) => setdetailSqlValue(e.target.value)}
+
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -371,7 +371,7 @@ function DetailComponent() {
 
                         <footer class="px-5 py-4 ">
                             <span className='float-right'>
-                                <button className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
+                                <button type="button" className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
                                     Submit All
                                 </button>
                             </span>

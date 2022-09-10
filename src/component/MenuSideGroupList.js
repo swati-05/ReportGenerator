@@ -56,6 +56,9 @@ function MenuSideGroupList(props) {
     return (
         <>
             <div className=' mt-1'>
+
+                {/**** Side menu group listing   ****/}
+
                 <div>
                     <li onClick={menuClick} className='ml-1 text-white text-left  '>
                         <button className=" text-gray-500 font-semibold py-2 px-4 rounded inline-flex items-center ">
@@ -66,20 +69,17 @@ function MenuSideGroupList(props) {
                             <label className='ml-1' value={props.menuGroupId}>{props.menuGroupName}</label>
                         </button>
                     </li>
-
-
-
                 </div>
+
+            {/**** If group is having template list i.e if status is true then template list will open 
+             and linked to templateSubmenu Component  ****/}
                 {
                     !props.subMenuStatus &&
                     <div className={`${menuList} absolute z-10 -mt-[2rem] bg-white transition-all duration-1000 ml-44 overflow-hidden  `}>
-
                         {
                             props.subMenu.map((data) => (
                                 <>
-
                                     <div onClick={subMenuToggle}>
-
                                         <button className=" text-gray-900 font-semibold   rounded inline-flex items-center ml-5">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-gray-400 ">
                                                 <path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5H5.625zM7.5 15a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5A.75.75 0 017.5 15zm.75 2.25a.75.75 0 000 1.5H12a.75.75 0 000-1.5H8.25z" clip-rule="evenodd" />
@@ -88,47 +88,10 @@ function MenuSideGroupList(props) {
                                             <ul>
                                                 <Link to={`templateSubmenu/${data.submenu[0]?.type}`} >
                                                     <li value={data.menu_id}>{data.menu_name}</li>
-                                                </Link>
-                                                {/* <ul className='ml-4'>
-                                                    {data.submenu?.map((submenuitem) => (
-                                                        <li value={submenuitem.menu_id}>
-                                                            <Link to={`templateSubmenu/${submenuitem.type}`} >
-                                                                {submenuitem.menu_name}
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-
-                                                </ul> */}
-                                            </ul>
-                                            {/* <Link to={`/templateSubmenu/${data?.menu_id}`}>
-                                                <label className=' w-36 text-sm p-2 text-left' value={data?.menu_id}>{data?.menu_id} {data?.menu_name}</label>
-                                            </Link> */}
-                                        </button>
-                                        <div className='hidden'>
-                                            <TemplateSubmenu tempSubMenuLevel2={data.submenu}
-                                            // values={{
-                                            //     menuGroupId: props.menuGroupId,
-                                            //     menuTempName: data?.menu_name,
-                                            //     menuTempCode: data?.menu_code,
-                                            //     subMenuStatus: subMenuStatus,
-                                            //     tempSubMenuLevel2: data.submenu,
-                                            //     reportTemplate_id: data?.menu_id
-                                            // }}
-                                            />
-                                        </div>
+                                                </Link>                                                
+                                            </ul>                                         
+                                        </button>                                       
                                     </div>
-
-                                    {/* <SubMenuLevel2
-                                        values={{
-                                            menuGroupId: props.menuGroupId,
-                                            menuTempName: menuData?.menu_name,
-                                            menuTempCode: menuData?.menu_code,
-                                            subMenuStatus: subMenuStatus,
-                                            subMenuLevel2: menuData.submenu,
-                                            reportTemplate_id: menuData?.menu_id
-                                        }}
-                                    /> */}
-
                                 </>
                             ))
                         }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Field, useFormik } from 'formik';
 
 function Setting(props) {
-    // const {collectFormDataFun} = props.values;
+    // const {collectAllLayoutDataFun} = props.values;
 
 
     // console.log("grp id in setting.....", props.groupId)
@@ -14,7 +14,7 @@ function Setting(props) {
 
 
     const [templateLayout, setTemplateLayout] = useState([])
-    console.log('collective form values : ', templateLayout);
+    // console.log('collective form values : ', templateLayout);
 
     const formik = useFormik({
         initialValues: {
@@ -46,8 +46,9 @@ function Setting(props) {
         },
         onSubmit: values => {
             alert(JSON.stringify(values, null, 2));
-            // collectFormDataFun('layout data  to store  ...',values)
-            setTemplateLayout( values );
+            console.log("setting data..",values)
+           props.collectAllLayoutDataFun('setting',values)
+            // setTemplateLayout(values);
             // setTemplateLayout({ ...templateLayout, values, ['layout']: props.Layout });
             // setTemplateLayout({ ...templateLayout, values, ['Detail']: props.Detail });
             // setTemplateLayout({ ...templateLayout, values, ['footer']: props.Footer });
@@ -169,6 +170,7 @@ function Setting(props) {
                                 <option value="A4"> A4</option>
                                
                             </Field> */}
+
                         </div>
                     </div>
                 </div>
@@ -206,7 +208,7 @@ function Setting(props) {
                             value="isLandscape"
                         />
                     </div>
-                   
+
                     <div>
                         <span className={`${labelStyle}`}>Page Layout 2</span>
                         <input
@@ -303,7 +305,7 @@ function Setting(props) {
                     </div>
                 </div>
                 <div>
-                    <button className='bg-green-300 px-16 rounded-lg  py-1 float-right hover:bg-green-500 border-green-500 border text-gray-500 font-bold'>Submit</button>
+                    <button type='buttonsubmit' className='bg-green-300 px-16 rounded-lg  py-1 float-right hover:bg-green-500 border-green-500 border text-gray-500 font-bold'>Submit</button>
                 </div>
             </form >
         </div >

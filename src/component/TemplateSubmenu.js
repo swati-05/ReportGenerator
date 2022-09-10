@@ -10,6 +10,8 @@ import FooterComponent from './FooterComponent';
 import Setting from './Setting';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import axios from 'axios';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -44,6 +46,8 @@ function a11yProps(index) {
     };
 }
 
+
+
 export default function TemplateSubmenu(props) {
     const [value, setValue] = React.useState(0);
     const [tabState, settabState] = useState(0)
@@ -71,8 +75,43 @@ export default function TemplateSubmenu(props) {
         setValue(newValue);
     };
 
-    // const { menuTempName, menuTempCode, subMenuStatus, tempSubMenuLevel2, reportTemplate_id } = props.values;
-    // console.log('props submenu : ',props.tempSubMenuLevel2)
+
+
+
+    const [submitStatus, setSubmitStatus] = useState(false)
+    const [allLayoutData, setAllLayoutData] = useState([])
+
+
+    const collectAllLayoutData = (key, formData) => {
+        console.log('prev Data', allLayoutData)
+        setAllLayoutData({ ...allLayoutData, [key]: formData })
+    }
+
+    const submitButtonToggle = () => {
+        setSubmitStatus(true)
+    }
+
+    const submitAllData = () => {
+        console.log(" all layout data", allLayoutData)
+        // axios({
+        //     method: "post",
+        //     // header: 'Access-Control-Allow-Origin: *',         
+        //     url: "http://192.168.0.237:8000/api/getreport/template",
+        //     data: allLayoutData,
+        // },)
+        //     .then(function (response) {
+        //         console.log("all layout data", response.data);
+
+        //     });
+        axios.post('http://192.168.0.237:8000/api/getreport/template',allLayoutData)
+            .then(function (response) {
+                console.log('got the response');
+            })
+            .catch(function (error) {
+                console.log('errrorrrr')
+                console.log(error);
+            })
+    }
 
     return (
 
@@ -99,27 +138,32 @@ export default function TemplateSubmenu(props) {
 
                 {tabState == 3 && <>
                     <TabPanel value={value} index={0}>
-                        <Setting />
+                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <PageLayComponentOld />
+                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
-                        <DetailComponent />
+                        <DetailComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                     <TabPanel value={value} index={3}>
-                        <FooterComponent />
+                        <FooterComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                 </>}
                 {tabState == 1 && <>
                     <TabPanel value={value} index={0}>
-                        <Setting />
+                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        <PageLayComponentOld />
+                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} />
                     </TabPanel>
                 </>}
             </Box>
+
+            {/* {submitStatus && <div className="flex items-center justify-center"><button type="button" className="absolute bottom-40 mx-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-xl hover:bg-blue-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Submit Form </button></div>} */}
+            <button className='bg-red-400 w-48 p-1 rounded-lg' onClick={submitAllData}>Submit all Data</button>
+
+
 
         </>
     );

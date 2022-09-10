@@ -21,22 +21,28 @@ function PageLayComponentOld(props) {
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
 
-
+    const [layoutSqlValue, setlayoutSqlValue] = useState()
     const [addRecordTable, setAddRecordTable] = useState([]);
     console.log("mulitple form data ", addRecordTable);
 
     const SubmitPageRecord = () => {
-        // collectFormDataFun('layout data  to store  ...',setAddRecordTable)
-        console.log('data from the form', setAddRecordTable);
-        axios({
-            method: "post",
-            url: "http://192.168.0.237:8000/api/templatePL/save",
-            data: addRecordTable,
-        })
-            .then(function (response) {
-                console.log("post data", response.data);
 
-            });
+        props.collectAllLayoutDataFun('layout', addRecordTable );
+        // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
+       
+
+
+        console.log("layout sql...", layoutSqlValue)
+        // console.log('data from the form', setAddRecordTable);
+        // axios({
+        //     method: "post",
+        //     url: "http://192.168.0.237:8000/api/templatePL/save",
+        //     data: addRecordTable,
+        // })
+        //     .then(function (response) {
+        //         console.log("post data", response.data);
+
+        //     });
     }
     // const handleFile = (e)=>{
     //     // console.log('printing the file ',e.target.files[0])
@@ -72,18 +78,16 @@ function PageLayComponentOld(props) {
                                 isItalic: false,
                                 color: '',
                                 isVisible: false,
-                                alignment: ''
+                                alignment: '',
+
 
                             }}
 
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
                                     alert(JSON.stringify(values, null, 2));
-
-                                    console.log('form component', values);
-
+                                    console.log('pageLayout component', values);
                                     setAddRecordTable([...addRecordTable, values]);
-
                                     setSubmitting(false);
                                 }, 400);
                             }}
@@ -277,30 +281,25 @@ function PageLayComponentOld(props) {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button type="submit" disabled={isSubmitting} className="bg-slate-100 px-8 py-1  ml-9 ">
+                                                        <button type="submit" disabled={isSubmitting} className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
                                                             Add
                                                         </button>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
-
-
                                         </table>
                                     </div>
-                                    <div className='w-full'>
 
-                                        <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
-                                            name="width"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.width}
-                                        />
-
-                                    </div>
                                 </form>
                             )}
                         </Formik>
+                        <div className='w-full'>
+                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                                name="layout_data"
+                                value={layoutSqlValue} onChange={(e) => setlayoutSqlValue(e.target.value)}
+
+                            />
+                        </div>
                     </div>
 
                 </div>
