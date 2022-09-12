@@ -8,13 +8,13 @@ import { Link, useParams } from 'react-router-dom';
 import Setting from './Setting';
 
 function PageLayComponentOld(props) {
-    // const {  collectFormDataFun} = props.values;
 
-    let { templateId, groupId, menuTempName, menuTempCode } = useParams();
 
-    const reportTemplate_id = templateId
-    // console.log("template id", reportTemplate_id)
-    console.log('grp id in page...', groupId)
+
+
+    // const reportTemplate_id = templateId
+
+    console.log('template id in page...', props.tempMenuId)
 
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
@@ -23,20 +23,22 @@ function PageLayComponentOld(props) {
 
     const [layoutSqlValue, setlayoutSqlValue] = useState()
     const [addRecordTable, setAddRecordTable] = useState([]);
+
+
     console.log("mulitple form data ", addRecordTable);
 
     const SubmitPageRecord = () => {
 
-        props.collectAllLayoutDataFun('layout', addRecordTable );
+        props.collectAllLayoutDataFun('layout', addRecordTable);
         // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
-       
+
 
 
         console.log("layout sql...", layoutSqlValue)
-        // console.log('data from the form', setAddRecordTable);
+        console.log('data from the form', setAddRecordTable);
         // axios({
         //     method: "post",
-        //     url: "http://192.168.0.237:8000/api/templatePL/save",
+        //     url: "http://192.168.0.237:8000/api/getreport/template",
         //     data: addRecordTable,
         // })
         //     .then(function (response) {
@@ -53,15 +55,10 @@ function PageLayComponentOld(props) {
         <>
             <div className='w-full'>
                 <div className=' w-full '>
-
-                    <div className=''>
-                        {/* <button className="bg-yellow-200 px-8 py-1 drop-shadow-lg ">Preview</button> */}
-                        <button className="bg-purple-300 px-6 py-1 -ml-6 drop-shadow-lg hidden" >Setting</button>
-                    </div>
                     <div>
                         <Formik
                             initialValues={{
-                                reportTemplate_id: templateId,
+                                reportTemplate_id: props.tempMenuId,
                                 caption: '',
                                 fieldType: '',
                                 fieldName: '',
@@ -105,13 +102,10 @@ function PageLayComponentOld(props) {
                             }) => (
 
                                 <form onSubmit={handleSubmit}>
-                                    {/* <h1 className='text-black   text-center text-lg font-serif   w-56 h-8 mt-2'>Layout Component</h1> */}
                                     <div className='w-full  text-center '>
-                                        <table class=" bg-teal-300 text-black w-full">
+                                        <table class=" bg-[#8bb3ee] text-black w-full shadow-sm">
                                             <tbody>
-                                                <tr className={`${inputContainerStyleTr} border`}>
-
-
+                                                <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
                                                         <Field name="fieldType" as="select" className={`${inputStyle} w-32`}>
                                                             <option >Field Type</option>
@@ -122,6 +116,7 @@ function PageLayComponentOld(props) {
                                                             <option value="param">Param</option>
                                                             <option value="captionWR">CaptionWR</option>
                                                         </Field>
+
                                                     </td>
                                                     <td className={`${inputContainerStyleTd} border`}>
                                                         <input
@@ -133,6 +128,7 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.caption}
                                                         />
+
                                                     </td>
                                                     <td className={`${inputContainerStyleTd}border `}>
                                                         <input
@@ -144,6 +140,7 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.fieldName}
                                                         />
+
                                                     </td>
                                                     <td className={`${inputContainerStyleTd} border`}>
                                                         <input id="file" name="file" type="file" onChange={(event) => {
@@ -162,6 +159,7 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.resource}
                                                         /> */}
+
                                                     </td>
 
                                                     <td className={`${inputContainerStyleTd} border`}>
@@ -171,12 +169,14 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.x}
                                                         />
+
                                                         <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='Y'
                                                             name="y"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.y}
                                                         />
+
                                                     </td>
 
                                                     <td className={`${inputContainerStyleTd} border`}>
@@ -190,6 +190,7 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.pageNo}
                                                         />
+
                                                         <Field name="fontSize" as="select" className={`${inputStyle} `}>
                                                             <option value="">Font Size</option>
                                                             <option value="5">5</option>
@@ -198,7 +199,7 @@ function PageLayComponentOld(props) {
                                                         </Field>
                                                     </td>
                                                 </tr>
-                                                <tr className={`${inputContainerStyleTr} ml-4`}>
+                                                <tr className={`${inputContainerStyleTr} mL-4`}>
                                                     <td className={`${inputContainerStyleTd} border`}>
                                                         <input type="text" className={`${inputStyle} w-12`} placeholder='H'
                                                             name="width"
@@ -206,12 +207,14 @@ function PageLayComponentOld(props) {
                                                             onBlur={handleBlur}
                                                             value={values.width}
                                                         />
+
                                                         <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W'
                                                             name="height"
                                                             onChange={handleChange}
                                                             onBlur={handleBlur}
                                                             value={values.height}
                                                         />
+
                                                     </td>
 
                                                     <td className={`${inputContainerStyleTd} border`}>
@@ -221,6 +224,7 @@ function PageLayComponentOld(props) {
                                                             <option value="serif">Serif</option>
 
                                                         </Field>
+
                                                     </td>
 
 
@@ -232,6 +236,7 @@ function PageLayComponentOld(props) {
                                                                 name="isUnderline"
 
                                                             />
+
                                                             U </span>
                                                         <span>
                                                             <Field
@@ -239,6 +244,7 @@ function PageLayComponentOld(props) {
                                                                 type="checkbox"
                                                                 name="isBold"
                                                             />
+
                                                             B </span>
                                                         <span>
                                                             <Field
@@ -246,6 +252,7 @@ function PageLayComponentOld(props) {
                                                                 type="checkbox"
                                                                 name="isItalic"
                                                             />
+
                                                             I </span>
 
                                                         <input
@@ -254,6 +261,7 @@ function PageLayComponentOld(props) {
                                                             name="color"
                                                             id="color"
                                                             onChange={handleChange} />
+
                                                     </td>
                                                     <td className={`${inputContainerStyleTd} border `}>
 
@@ -267,11 +275,12 @@ function PageLayComponentOld(props) {
 
                                                             </Field>
 
+
                                                         </span>
 
                                                     </td>
                                                     <td className={`${inputContainerStyleTd}border `}>
-                                                        <div className='flex   '>
+                                                        <div className='flex -ml-12  '>
                                                             <div className='flex-1  '>
                                                                 <p className='text-amber-300 '>Visibility</p>
                                                             </div>
@@ -286,9 +295,11 @@ function PageLayComponentOld(props) {
                                                         </button>
                                                     </td>
                                                 </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
+
 
                                 </form>
                             )}
@@ -303,6 +314,7 @@ function PageLayComponentOld(props) {
                     </div>
 
                 </div>
+
 
                 {/* mapping data field and setting the view */}
                 <div className='py-6'>
@@ -500,11 +512,6 @@ function PageLayComponentOld(props) {
                         </div>
 
                     </div>
-                </div>
-
-                {/*this component is kept hidden */}
-                <div className="hidden">
-                    <Setting Layout={addRecordTable} />
                 </div>
             </div>
         </>

@@ -139,7 +139,7 @@ function SideMenu(props) {
                                     </select>
                                 </div>
 
-                                <div className='flex-1 mt-4 ml-2 rounded-xl h-8 bg-green-400'>
+                                <div className='flex mt-4 ml-2 rounded-xl h-8 shadow-lg  bg-green-400'>
                                     <GroupComponent />
                                 </div>
                             </div>

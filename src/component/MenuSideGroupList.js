@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import SubMenuLevel2 from './SubMenuLevel2';
 import Setting from './Setting';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import TemplateSubmenu from './TemplateSubmenu';
 
 function MenuSideGroupList(props) {
@@ -51,7 +51,7 @@ function MenuSideGroupList(props) {
     // }, [])
 
     console.log("sub menu first level ...", props.subMenu)
-    console.log("group name ...", props.subMenuStatus)
+
 
     return (
         <>
@@ -65,7 +65,6 @@ function MenuSideGroupList(props) {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                                 <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
                             </svg>
-
                             <label className='ml-1' value={props.menuGroupId}>{props.menuGroupName}</label>
                         </button>
                     </li>
@@ -86,8 +85,8 @@ function MenuSideGroupList(props) {
                                                 <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
                                             </svg>
                                             <ul>
-                                                <Link to={`templateSubmenu/${data.submenu[0]?.type}`} >
-                                                    <li value={data.menu_id}>{data.menu_name}</li>
+                                                <Link to={`templateSubmenu/${data.submenu[0]?.type}/${data?.menu_name}/${data?.menu_code}/${props.menuGroupId}/${data?.menu_id}`} >
+                                                    <li value={data.menu_id}>{data.menu_id}{data.menu_name}</li>
                                                 </Link>                                                
                                             </ul>                                         
                                         </button>                                       

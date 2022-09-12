@@ -1,28 +1,27 @@
 import React, { useState } from 'react';
 import { Field, useFormik } from 'formik';
+import { useParams } from 'react-router-dom';
 
 function Setting(props) {
-    // const {collectAllLayoutDataFun} = props.values;
 
 
-    // console.log("grp id in setting.....", props.groupId)
-    // console.log("name id in setting.....", props.menuTempName)
-    // console.log("code id in setting.....", props.menuTempCode)
-    console.log("layout....", props.Layout)
-    console.log("detail....", props.Detail)
-    console.log("footer....", props.Footer)
+console.log("template name in setting", props.tempMenuName)
+console.log("template code  in setting", props.tempMenuCode)
+console.log("template type  in setting", props.tempLayoutType)
+console.log("group id in setting", props.groupId)
 
 
+   
     const [templateLayout, setTemplateLayout] = useState([])
     // console.log('collective form values : ', templateLayout);
 
     const formik = useFormik({
         initialValues: {
-            groupId: props.groupId,
-            templateCode: props.menuTempCode,
-            templateName: props.menuTempName,
+            groupId:  props.groupId,
+            templateCode: props.tempMenuCode,
+            templateName:  props.tempMenuName,
             paperSizeEnum: '',
-            detailLayout: '',
+            detailLayout: props.tempLayoutType,
             headerHeight: '',
             headerHeightPage2: '',
             footerHeight: '',
@@ -48,10 +47,7 @@ function Setting(props) {
             alert(JSON.stringify(values, null, 2));
             console.log("setting data..",values)
            props.collectAllLayoutDataFun('setting',values)
-            // setTemplateLayout(values);
-            // setTemplateLayout({ ...templateLayout, values, ['layout']: props.Layout });
-            // setTemplateLayout({ ...templateLayout, values, ['Detail']: props.Detail });
-            // setTemplateLayout({ ...templateLayout, values, ['footer']: props.Footer });
+          
         },
     });
     const inputStyle = "border px-2 py-1 rounded-lg";
@@ -72,9 +68,8 @@ function Setting(props) {
                             className={`${inputStyle}`}
                             type="text"
                             name="tempCode"
-                            placeholder=''
-                            onChange={formik.handleChange}
-                            value={props.menuTempCode}
+                            placeholder=''                          
+                            value={props.tempMenuCode}
                         />
                     </div>
                     <div>
@@ -83,9 +78,8 @@ function Setting(props) {
                             className={`${inputStyle}`}
                             type="text"
                             name="tempName"
-                            placeholder=''
-                            onChange={formik.handleChange}
-                            value={props.menuTempName}
+                            placeholder=''                        
+                            value={props.tempMenuName}
                         />
                     </div>
                     <div>
@@ -95,8 +89,7 @@ function Setting(props) {
                             type="text"
                             name="detailLayout"
                             placeholder=''
-                            onChange={formik.handleChange}
-                            value={formik.values.detailLayout}
+                            value={props.tempLayoutType}
                         />
                     </div>
                 </div>
@@ -166,10 +159,11 @@ function Setting(props) {
                         <div>
                             <span className={`${labelStyle}`}>Paper Size</span>
 
-                            {/* <Field as="select" className={`${labelStyle} border`} name="paperSizeEnum"  >
+                            <select as="select" className={`${labelStyle} border`} name="paperSizeEnum"  >
+                                <option value="A4"> A4</option>
                                 <option value="A4"> A4</option>
                                
-                            </Field> */}
+                            </select>
 
                         </div>
                     </div>

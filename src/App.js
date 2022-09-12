@@ -48,7 +48,7 @@ function App() {
             <Route path="/allLayout" element={<LayoutFormIndex />} />
             {/* <Route path="/" element={<SubMenuLevel2 />} /> */}
 
-            <Route path="/templateSubmenu/:menuType" element={<TemplateSubmenu />} />
+            <Route path="/templateSubmenu/:menuType/:menuName/:menuCode/:groupId/:menuId" element={<TemplateSubmenu />} />
           {/* <Route path="/detailPage" element={<DetailComponent />} />
           <Route path="/footerPage" element={<FooterComponent />} />
           <Route path="/detailLayout/:layoutId" element={<FooterComponent />} /> */}

@@ -5,12 +5,11 @@ import { useParams } from 'react-router-dom';
 import Setting from './Setting';
 
 function FooterComponent(props) {
-    let { templateId, groupId, menuTempName, menuTempCode } = useParams();
 
 
+    console.log('template id in footer...', props.tempMenuId)
 
-    // let { templateId } = useParams();
-    const reportTemplate_id = templateId
+
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
@@ -50,7 +49,7 @@ function FooterComponent(props) {
                     <div>
                         <Formik
                             initialValues={{
-                                reportTemplate_id: templateId,
+                                reportTemplate_id: props.tempMenuId,
                                 caption: '',
                                 fieldType: '',
                                 fieldName: '',
@@ -91,14 +90,8 @@ function FooterComponent(props) {
 
                             }) => (
                                 <form onSubmit={handleSubmit}>
-
-
-
-
                                     <div className='w-full  text-center '>
-
-
-                                        <table class=" bg-teal-300 text-black w-full">
+                                        <table class=" bg-[#8bb3ee] text-black w-full shadow-sm">
                                             <tbody>
                                                 <tr className={`${inputContainerStyleTr}`}>
                                                     <td className={`${inputContainerStyleTd} `}>
@@ -262,7 +255,7 @@ function FooterComponent(props) {
                                                         </div>
                                                     </td>
                                                     <td>
-                                                    <button type="submit" disabled={isSubmitting} className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
+                                                        <button type="submit" disabled={isSubmitting} className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
                                                             Add
                                                         </button>
                                                     </td>
@@ -271,12 +264,12 @@ function FooterComponent(props) {
                                             </tbody>
                                         </table>
                                     </div>
-                                    
+
                                 </form>
                             )}
                         </Formik>
-                        <div className='w-full'>
-                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                        <div className='w-full shadow-sm '>
+                            <textarea className={`h-28 w-full  border-gray-200 mt-2 `} placeholder='sql query'
                                 name="detail_data"
                                 value={footerSqlValue} onChange={(e) => setfooterSqlValue(e.target.value)}
 
@@ -299,6 +292,9 @@ function FooterComponent(props) {
                                     <tr>
                                         <th></th>
                                         <th class="p-2">
+                                            <div class="font-semibold text-center"></div>
+                                        </th>
+                                        <th class="p-2">
                                             <div class="font-semibold text-left">Field Type</div>
                                         </th>
                                         <th class="p-2">
@@ -308,8 +304,46 @@ function FooterComponent(props) {
                                             <div class="font-semibold text-left">Field Name</div>
                                         </th>
                                         <th class="p-2">
-                                            <div class="font-semibold text-center"></div>
+                                            <div class="font-semibold text-left">Image</div>
                                         </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">X</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Y</div>
+                                        </th>
+                                       
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Font Size</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Height</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Width</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Font </div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">isBold</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">isUnderline</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">color </div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">IsItalic </div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Alignment</div>
+                                        </th>
+                                        <th class="p-2">
+                                            <div class="font-semibold text-left">Visibility</div>
+                                        </th>
+
 
                                     </tr>
                                 </thead>
@@ -322,8 +356,19 @@ function FooterComponent(props) {
                                                     <td class="p-2">
 
                                                     </td>
+                                                    <td class="">
+                                                        <div class="flex justify-center">
+                                                            <button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                                                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                                                                    <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" />
+                                                                </svg>
+
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                     <td class="p-2">
-                                                        <div class="font-medium text-gray-800 text-left">
+                                                        <div class="font-medium text-gray-800 text-left text-xs">
                                                             {item?.fieldType}
                                                         </div>
                                                     </td>
@@ -333,21 +378,72 @@ function FooterComponent(props) {
                                                         </div>
                                                     </td>
                                                     <td class="p-2">
-                                                        <div class="text-left font-medium text-green-500">
+                                                        <div class="text-left font-medium text-green-500 text-xs">
                                                             {item?.fieldName}
                                                         </div>
                                                     </td>
                                                     <td class="p-2">
-                                                        <div class="flex justify-center">
-                                                            <button>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                                                                    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-                                                                    <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" />
-                                                                </svg>
-
-                                                            </button>
+                                                        <div class="font-medium text-gray-800 text-left text-xs">
+                                                            {/* {item?.file} */}
                                                         </div>
                                                     </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left text-xs">
+                                                            {item?.x}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left font-medium text-green-500 text-xs">
+                                                            {item?.y}
+                                                        </div>
+                                                    </td>
+                                                   
+                                                    <td class="p-2">
+                                                        <div class="text-left">
+                                                            {item?.fontSize}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left font-medium text-green-500 text-xs">
+                                                            {item?.height}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="font-medium text-gray-800 text-left text-xs">
+                                                            {item?.width}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left text-xs">
+                                                            {item?.fontName}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left font-medium text-green-500 text-xs">
+                                                            {item?.isBold}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="font-medium text-gray-800 text-left text-xs">
+                                                            {item?.isUnderline}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left text-xs">
+                                                            {item?.color}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left text-xs">
+                                                            {item?.alignment}
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <div class="text-left font-medium text-green-500 text-xs">
+                                                            {item?.isVisible}
+                                                        </div>
+                                                    </td>
+
                                                 </tr>
 
                                             </>
@@ -365,7 +461,7 @@ function FooterComponent(props) {
                         <footer class="px-5 py-4 ">
                             <span className='float-right'>
                                 <button type="button" className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
-                                    Submit All
+                                    Save
                                 </button>
                             </span>
                         </footer>
