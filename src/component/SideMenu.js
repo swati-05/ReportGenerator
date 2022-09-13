@@ -15,10 +15,10 @@ function SideMenu(props) {
     const [menuList, setmenuList] = useState([])
 
 
-    const [menuHeight, setmenuHeight] = useState('h-0')
+    const [menuwidth, setMenuWidth] = useState('w-48')
 
     const toggleMenu = () => {
-        menuHeight == 'h-0' ? setmenuHeight('h-screen') : setmenuHeight('h-0')
+        menuwidth == 'w-48' ? setMenuWidth('w-12') : setMenuWidth('w-48')
     }
 
     {/**** add template  ****/ }
@@ -88,31 +88,39 @@ function SideMenu(props) {
 
     return (
         <>
-            <div className='w-12 bg-red-200'>
+            <div className=''>
 
                 {/**** default template and passing value to MenuSideGroupList component ****/}
+                <div>
 
-                <div className={`${menuHeight} h-screen w-48  shadow-xl bg-white `}  >
-                    <ul>
-                        <li>
-                            <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ml-1">
-                                    <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
-                                </svg>
-                                <span className='ml-1'>Default Template</span>
-                            </button>
 
-                        </li>
-                        {
-                            menuList?.map((data) => (
-                                <li>
-                                    {/* {console.log('submenu data ', data?.sub_menu)}
+
+
+                    <div className={`${menuwidth} h-screen  overflow-hidden shadow-lg shadow-gray-700 bg-white `}  >
+                        <span>
+                            <button className='bg-[#074097] text-white h-8  w-12  p-1 float-right ' onClick={toggleMenu} > menu </button>
+                        </span>
+                        <ul>
+                            <li>
+                                <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ml-1 text-[#074097] ">
+                                        <path d="M19.5 21a3 3 0 003-3v-4.5a3 3 0 00-3-3h-15a3 3 0 00-3 3V18a3 3 0 003 3h15zM1.5 10.146V6a3 3 0 013-3h5.379a2.25 2.25 0 011.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 013 3v1.146A4.483 4.483 0 0019.5 9h-15a4.483 4.483 0 00-3 1.146z" />
+                                    </svg>
+                                    <span className='ml-3 text-sm text-[#074097]'>Default Template</span>
+                                </button>
+
+                            </li>
+                            {
+                                menuList?.map((data) => (
+                                    <li>
+                                        {/* {console.log('submenu data ', data?.sub_menu)}
                                     {console.log('submenu data type', data?.submenu)} */}
-                                    <MenuSideGroupList menuGroupName={data?.menu_name} menuGroupId={data?.menu_id} subMenustatus={true} subMenu={data?.sub_menu} />
-                                </li>
-                            ))
-                        }
-                    </ul>
+                                        <MenuSideGroupList menuGroupName={data?.menu_name} menuGroupId={data?.menu_id} subMenustatus={true} subMenu={data?.sub_menu} />
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
 
                 {/**** add template  ****/}

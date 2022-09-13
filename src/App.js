@@ -24,14 +24,12 @@ function App() {
     <div>
       {/* <Setting /> */}
       {/* <Side /> */}
-      <div className='w-full h-10  bg-white shadow-lg'>
-        <span>
-          <button className='bg-red-300 h-8 mt-1  w-16  p-2 rounded-r-full'  > menu </button>
-        </span>
-        <span className='px-28 '>
-          <span className="text-gray-500">Group Name > </span>
-          <span className="text-gray-500">Template Name > </span>
-          <span className="text-gray-500">Page Layout </span>
+      <div className='w-full h-10  bg-white  shadow-lg'>
+       
+        <span className=''>
+
+          <span className="text-[#074097] font-sans font-bold text-2xl px-28">GENERATE REPORT </span>
+         
         </span>
       </div>
       <div className='border grid grid-cols-6 '>
