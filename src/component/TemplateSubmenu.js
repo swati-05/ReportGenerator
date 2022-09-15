@@ -11,6 +11,10 @@ import Setting from './Setting';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { Stream } from '@mui/icons-material';
+import $ from 'jquery';
+
+
 
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -101,97 +105,201 @@ export default function TemplateSubmenu(props) {
         setSubmitStatus(true)
     }
 
+    let data = {
+        "paper_size_enum": "100,100",
+        "detail_layout": "General",
+        "header_height": "20",
+        "layout": [
+            {
+                "caption": "Hello world",
+                "field_type": "caption",
+                "is_bold": "yes",
+                "is_italic": "yes",
+                "is_underline": "yes",
+                "is_visible": "yes",
+                "font_name": "Arial",
+                "font_size": "12",
+                "color": "#000",
+                "alignment": "center",
+                "width": "0",
+                "height": "0"
+            }
+        ],
+        "layout_data": "",
+        "details": [],
+        "details_data": "",
+        "footer": [],
+        "footer_data": ""
+    }
+
     const submitAllData = () => {
         console.log(" all layout data", allLayoutData)
-  
 
+        // axios({
+        //     method: "post",
+        //     url: "http://192.168.0.237:8000/api/getreport/template",
+        //     data: {
+        //         "paper_size_enum": "100,100",
+        //         "detail_layout": "General",
+        //         "header_height": "20",
+        //         "layout": [
+        //             {
+        //                 "caption": "Hello world",
+        //                 "field_type": "caption",
+        //                 "is_bold": "yes",
+        //                 "is_italic": "yes",
+        //                 "is_underline": "yes",
+        //                 "is_visible": "yes",
+        //                 "font_name": "Arial",
+        //                 "font_size": "12",
+        //                 "color": "#000",
+        //                 "alignment": "center",
+        //                 "width": "0",
+        //                 "height": "0"
+        //             }
+        //         ],
+        //         "layout_data": "",
+        //         "details": [],
+        //         "details_data": "",
+        //         "footer": [],
+        //         "footer_data": ""
+        //     },
+        //     // responseType: 'arraybuffer',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Accept: 'application/pdf',
+        //     }
+        // },)
+        //     .then(function (response) {
+        //         console.log("all layout data", response.data);
+        //         var pdf= window.open("")
+        //                 pdf.document.write("<iframe width='100%' height='100%'"+
+        //                 " src='data:application/pdf;base64, " + encodeURI(response.data)+"'></iframe>")
+
+        //         // setResponseData(response.data);
+        //     });
+
+        $.ajax({
+            type: 'POST',
+            url: "http://192.168.0.237:8000/api/getreport/template",
+            data: data,
+            dataType: "text",
+            contentType: "application/json",          
+            success: function (resultData) {
+                alert("Save Complete")
+                console.log(resultData)
+                // setResponseData(resultData);
+
+                const file = new Blob([resultData], { type: 'application/pdf' });
+                const fileURL = URL.createObjectURL(file);  
+
+
+                var reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.onloadend = function () {
+                    const base64data = reader.result;
+                    console.log("data pdf ...", base64data);
+            
+                    var pdf= window.open("")
+                    pdf.document.write("<iframe width='100%' height='100%'"+
+                    " src='data:application/pdf;base64, " + (base64data)+"'></iframe>")
+                }    
+            },
           
-
-            axios({
-                method: "post",
-                url: "http://192.168.0.237:8000/api/getreport/template",
-                data: allLayoutData,
-                // responseType: 'arraybuffer',
-                // headers: {
-                //     'Content-Type': 'application/json',
-                //     Accept: 'application/pdf',
-                // }
-            },)
-                .then(function (response) {
-                    console.log("all layout data", response.data);
-
-                    setResponseData(response.data);
-
-                });
-         }
-
-        const file = new Blob([ResponseData],
-            { type: 'application/pdf' });
-        //Build a URL from the file
-        const fileURL = URL.createObjectURL(file);
-        //Open the URL on new Window
-        // window.open(fileURL);
-        console.log("pdf file ", file)
+        });
+      
+        // var w = window.open(ResponseData, '_blank', 'location=yes,height=800,width=700,scrollbars=yes,status=yes');
+        // w.window.print();
+    }
+    
 
 
+    // const showPdf = () => {
+    //     var w = window.open('/', 'location=yes,height=800,width=700,scrollbars=yes,status=yes');
 
-        return (
+    //     w.data = ResponseData;
+    //     // w.window.print();
+    // }
 
-            <>
 
-                <Box sx={{ width: '100%' }}>
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        {tabState == 3 && <>
-                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    // const file = new Blob([ResponseData], { type: 'application/pdf' });
+    // const fileURL = URL.createObjectURL(file);  
+    // // window.open(fileURL);
+    // console.log("pdf file ", file)
 
-                                <Tab label='Setting' {...a11yProps(0)} />
-                                <Tab label='layout' {...a11yProps(1)} />
-                                <Tab label='Details' {...a11yProps(2)} />
-                                <Tab label='Footer' {...a11yProps(3)} />
-                            </Tabs>
-                        </>}
-                        {tabState == 1 && <>
-                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                <Tab label='Setting' {...a11yProps(0)} />
-                                <Tab label='layout' {...a11yProps(1)} />
-                            </Tabs>
-                        </>}
-                    </Box>
 
+    // var reader = new FileReader();
+
+    // reader.readAsDataURL(file);
+    // reader.onloadend = function () {
+    //     const base64data = reader.result;
+    //     console.log("data pdf ...", base64data);
+
+    //     return;
+    // }
+
+    // var w = window.open(mStr, '_blank', 'location=yes,height=800,width=700,scrollbars=yes,status=yes');
+    //     w.window.print();
+
+
+
+    return (
+
+        <>
+
+            <Box sx={{ width: '100%' }}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     {tabState == 3 && <>
-                        <TabPanel value={value} index={0}>
-                            <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                            <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                        </TabPanel>
-                        <TabPanel value={value} index={2}>
-                            <DetailComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                        </TabPanel>
-                        <TabPanel value={value} index={3}>
-                            <FooterComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                        </TabPanel>
+                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+
+                            <Tab label='Setting' {...a11yProps(0)} />
+                            <Tab label='layout' {...a11yProps(1)} />
+                            <Tab label='Details' {...a11yProps(2)} />
+                            <Tab label='Footer' {...a11yProps(3)} />
+                        </Tabs>
                     </>}
                     {tabState == 1 && <>
-                        <TabPanel value={value} index={0}>
-                            <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
-                        </TabPanel>
-                        <TabPanel value={value} index={1}>
-                            <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                        </TabPanel>
+                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                            <Tab label='Setting' {...a11yProps(0)} />
+                            <Tab label='layout' {...a11yProps(1)} />
+                        </Tabs>
                     </>}
                 </Box>
 
-                {/* {submitStatus && <div className="flex items-center justify-center"><button type="button" className="absolute bottom-40 mx-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-xl hover:bg-blue-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Submit Form </button></div>} */}
-                <button className='bg-red-400 w-48 p-1 rounded-lg' onClick={submitAllData}>Submit all Data</button>
+                {tabState == 3 && <>
+                    <TabPanel value={value} index={0}>
+                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <DetailComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                    </TabPanel>
+                    <TabPanel value={value} index={3}>
+                        <FooterComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                    </TabPanel>
+                </>}
+                {tabState == 1 && <>
+                    <TabPanel value={value} index={0}>
+                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                    </TabPanel>
+                </>}
+            </Box>
 
-                <div className='h-48 w-full bg-gray-700'>
-                    <object id="pdf" data={fileURL} type="application/pdf" width="100%" height="100%">
+            {/* {submitStatus && <div className="flex items-center justify-center"><button type="button" className="absolute bottom-40 mx-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-xl hover:bg-blue-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Submit Form </button></div>} */}
+            <button className='bg-red-400 w-48 p-1 rounded-lg' onClick={submitAllData}>Submit all Data</button>
+
+            <div className='h-48 w-full bg-gray-700'>
+                <object id="pdf" type="application/pdf" width="100%" height="100%">
                     <p>Alternative text - include a link </p>
                 </object>
-
-
-                </div>
-            </>
-        );
-    }
+                <button className='bg-yellow-200 w-48 p-1 rounded-lg' id='btnCheck' >Preview</button>
+            </div>
+        </>
+    );
+}

@@ -159,10 +159,9 @@ console.log("group id in setting", props.groupId)
                         <div>
                             <span className={`${labelStyle}`}>Paper Size</span>
 
-                            <select as="select" className={`${labelStyle} border`} name="paperSizeEnum"  >
+                            <select {...formik.getFieldProps('paperSizeEnum')}  className={`${labelStyle} border`}   >
                                 <option value="A4"> A4</option>
-                                <option value="A4"> A4</option>
-                               
+                                <option value="A3"> A3</option>                              
                             </select>
 
                         </div>

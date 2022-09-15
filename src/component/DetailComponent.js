@@ -30,16 +30,16 @@ function DetailComponent(props) {
 
         console.log('data from detail', addDetailRecordTable);
 
-    //     axios({
-    //         method: "post",
-    //         url: "http://192.168.0.237:8000/api/templateDtl/save",
-    //         data: addDetailRecordTable,
-    //     })
-    //         .then(function (response) {
-    //             console.log("post data", response.data);
+        axios({
+            method: "post",
+            url: "http://192.168.0.237:8000/api/templateDtl/save",
+            data: addDetailRecordTable,
+        })
+            .then(function (response) {
+                console.log("post data", response.data);
 
 
-    //         });
+            });
    }
 
 
@@ -262,7 +262,13 @@ function DetailComponent(props) {
                                                                 <p className='text-amber-300 '>Visibility</p>
                                                             </div>
                                                             <div className='flex-1  w-80 -ml-36 -mt-1 '>
-                                                                <span><input type="checkbox" className={`${inputStyle} bg-teal-300`} />  </span>
+                                                                <span>
+                                                                <Field
+                                                                        className={`${inputStyle} bg-teal-300`}
+                                                                        type="checkbox"
+                                                                        name="isVisible"
+                                                                    />
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -325,7 +331,7 @@ function DetailComponent(props) {
                                                 <div class="font-semibold text-left">Y</div>
                                             </th>
                                             <th class="p-2">
-                                                <div class="font-semibold text-left">Page no.</div>
+                                                <div class="font-semibold text-left">Boxed</div>
                                             </th>
                                             <th class="p-2">
                                                 <div class="font-semibold text-left">Font Size</div>
@@ -413,7 +419,7 @@ function DetailComponent(props) {
                                                         </td>
                                                         <td class="p-2">
                                                             <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.pageNo}
+                                                                {item?.isBoxed == true?'yes':'no'}
                                                             </div>
                                                         </td>
                                                         <td class="p-2">
@@ -438,12 +444,17 @@ function DetailComponent(props) {
                                                         </td>
                                                         <td class="p-2">
                                                             <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.isBold}
+                                                                {item?.isBold == true?'yes':'no'}
                                                             </div>
                                                         </td>
                                                         <td class="p-2">
                                                             <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.isUnderline}
+                                                                {item?.isUnderline == true?'yes':'no'}
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <div class="font-medium text-gray-800 text-left text-xs">
+                                                                {item?.isItalic == true?'yes':'no'}
                                                             </div>
                                                         </td>
                                                         <td class="p-2">
@@ -458,7 +469,7 @@ function DetailComponent(props) {
                                                         </td>
                                                         <td class="p-2">
                                                             <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.isVisible}
+                                                                {item?.isVisible == true?'yes':'no'}
                                                             </div>
                                                         </td>
 

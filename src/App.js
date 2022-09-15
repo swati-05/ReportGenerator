@@ -14,6 +14,7 @@ import Side from './component/Tessting/Side';
 import Setting from './component/Setting';
 import SubMenuLevel2 from './component/SubMenuLevel2';
 import LayoutFormIndex from './component/LayoutFormIndex';
+import Hello from './component/Hello';
 
 function App() {
 
@@ -22,8 +23,7 @@ function App() {
   return (
 
     <div>
-      {/* <Setting /> */}
-      {/* <Side /> */}
+     
       <div className='w-full h-10  bg-white  shadow-lg'>
        
         <span className=''>
@@ -38,7 +38,7 @@ function App() {
         </div>
         <div className=' col-span-5 '>
           <Routes>
-            {/* <Route path="/" element={<PageContent />} /> */}
+            {/* <Route path="/" element={<Hello />} /> */}
             {/* <Route path="/pagelayout/:templateId/:groupId/:menuTempName/:menuTempCode" element={<PageLayComponent />} /> */}
             <Route path="/detailPage/:templateId/:groupId/:menuTempName/:menuTempCode" element={<DetailComponent />} />
             <Route path="/footerPage/:templateId/:groupId/:menuTempName/:menuTempCode" element={<FooterComponent />} />
