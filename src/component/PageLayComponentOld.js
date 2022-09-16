@@ -6,6 +6,7 @@ import PageLayoutTable from './PageLayoutTable';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Setting from './Setting';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function PageLayComponentOld(props) {
 
@@ -23,7 +24,7 @@ function PageLayComponentOld(props) {
 
     const [layoutSqlValue, setlayoutSqlValue] = useState()
     const [addRecordTable, setAddRecordTable] = useState([]);
-
+    const [updateRecord, setupdateRecord] = useState()
 
     console.log("mulitple form data ", addRecordTable);
 
@@ -31,8 +32,6 @@ function PageLayComponentOld(props) {
 
         props.collectAllLayoutDataFun('layout', addRecordTable);
         // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
-
-
 
         console.log("layout sql...", layoutSqlValue)
         console.log('data from the form', setAddRecordTable);
@@ -46,10 +45,29 @@ function PageLayComponentOld(props) {
 
             });
     }
-    // const handleFile = (e)=>{
-    //     // console.log('printing the file ',e.target.files[0])
-    //     setFieldValue(e.target.files[0])
-    // }
+
+
+    const handleRemove = (index) => {
+        alert('Confirm ?');
+        console.log('key ', index);
+        setAddRecordTable(current =>
+            current.filter(record => {
+                if (current.indexOf(record) == index) {
+                    console.log('value matched at ', index)
+                } else {
+                    // alert('current index of ct ',current.indexOf(ct))
+                    return record
+                }
+            }),
+        );
+    }
+
+    const handleUpdateValue = (index) => {
+        alert(" ready update")
+        console.log('key ', index);
+      
+    }
+
 
     return (
         <>
@@ -78,10 +96,11 @@ function PageLayComponentOld(props) {
                                 alignment: '',
                             }}
 
-                            onSubmit={(values, { setSubmitting }) => {
+                            onSubmit={(values, { setSubmitting, resetForm }) => {
                                 setTimeout(() => {
                                     alert(JSON.stringify(values, null, 2));
                                     console.log('pageLayout component', values);
+                                    resetForm();
                                     setAddRecordTable([...addRecordTable, values]);
                                     setSubmitting(false);
                                 }, 400);
@@ -262,9 +281,7 @@ function PageLayComponentOld(props) {
 
                                                     </td>
                                                     <td className={`${inputContainerStyleTd} border `}>
-
                                                         <span className='text-amber-300 '>Alignment</span>
-
                                                         <span>
                                                             <Field name="alignment" as="select" className={`${inputStyle}  w-32`}>
                                                                 <option value="left">Left</option>
@@ -272,10 +289,7 @@ function PageLayComponentOld(props) {
                                                                 <option value="center">Center</option>
 
                                                             </Field>
-
-
                                                         </span>
-
                                                     </td>
                                                     <td className={`${inputContainerStyleTd}border `}>
                                                         <div className='flex -ml-12  '>
@@ -284,11 +298,11 @@ function PageLayComponentOld(props) {
                                                             </div>
                                                             <div className='flex-1  w-80 -ml-36 -mt-1 '>
                                                                 <span>
-                                                                <Field
+                                                                    <Field
                                                                         className={`${inputStyle} bg-teal-300`}
                                                                         type="checkbox"
                                                                         name="isVisible"
-                                                                    />      
+                                                                    />
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -303,8 +317,6 @@ function PageLayComponentOld(props) {
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                 </form>
                             )}
                         </Formik>
@@ -312,7 +324,6 @@ function PageLayComponentOld(props) {
                             <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
                                 name="layout_data"
                                 value={layoutSqlValue} onChange={(e) => setlayoutSqlValue(e.target.value)}
-
                             />
                         </div>
                     </div>
@@ -394,123 +405,119 @@ function PageLayComponentOld(props) {
 
                                     <tbody class="text-sm divide-y divide-gray-100">
                                         {
-                                            addRecordTable.map((item) => (
+                                            addRecordTable.map((item, index) => (
                                                 <>
-                                                    <tr>
-                                                        <td class="p-2">
+                                                  
+                                                        <tr>
+                                                            <td class="p-2">
+                                                                {index}
+                                                            </td>
+                                                            <td class="">
+                                                                <div class="flex justify-center">
+                                                                    <button type='button' onClick={() => handleUpdateValue(index)} >
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-green-500 rounded-md  hover:text-green-700">
+                                                                            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="">
+                                                                <div class="flex justify-center">
+                                                                    <button type='button' onClick={() => handleRemove(index)}>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-red-500 hover:text-red-700">
+                                                                            <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {item?.fieldType}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left">
+                                                                    {item?.caption}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left font-medium text-green-500 text-xs">
+                                                                    {item?.fieldName}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {/* {item?.file} */}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left text-xs">
+                                                                    {item?.x}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left font-medium text-green-500 text-xs">
+                                                                    {item?.y}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {item?.pageNo}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left">
+                                                                    {item?.fontSize}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left font-medium text-green-500 text-xs">
+                                                                    {item?.height}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {item?.width}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left text-xs">
+                                                                    {item?.fontName}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left font-medium text-green-500 text-xs">
+                                                                    {item?.isBold == true ? 'yes' : 'no'}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {item?.isUnderline == true ? 'yes' : 'no'}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left text-xs">
+                                                                    {item?.color}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="font-medium text-gray-800 text-left text-xs">
+                                                                    {item?.isItalic == true ? 'yes' : 'no'}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left text-xs">
+                                                                    {item?.alignment}
+                                                                </div>
+                                                            </td>
+                                                            <td class="p-2">
+                                                                <div class="text-left font-medium text-green-500 text-xs">
+                                                                    {item?.isVisible == true ? 'yes' : 'no'}
+                                                                </div>
+                                                            </td>
 
-                                                        </td>
-                                                        <td class="">
-                                                            <div class="flex justify-center">
-                                                                <button>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-green-500 rounded-md ">
-                                                                        <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-                                                                    </svg>
-
-
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="">
-                                                            <div class="flex justify-center">
-                                                                <button>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-red-500">
-                                                                        <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
-                                                                    </svg>
-
-
-
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.fieldType}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left">
-                                                                {item?.caption}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.fieldName}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {/* {item?.file} */}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left text-xs">
-                                                                {item?.x}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.y}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.pageNo}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left">
-                                                                {item?.fontSize}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.height}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.width}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left text-xs">
-                                                                {item?.fontName}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.isBold == true?'yes':'no'}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.isUnderline == true?'yes':'no'}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left text-xs">
-                                                                {item?.color}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="font-medium text-gray-800 text-left text-xs">
-                                                                {item?.isItalic == true?'yes':'no'}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left text-xs">
-                                                                {item?.alignment}
-                                                            </div>
-                                                        </td>
-                                                        <td class="p-2">
-                                                            <div class="text-left font-medium text-green-500 text-xs">
-                                                                {item?.isVisible == true?'yes':'no'}
-                                                            </div>
-                                                        </td>
-
-                                                    </tr>
-
+                                                        </tr>
+                                                    
                                                 </>
                                             ))
 
