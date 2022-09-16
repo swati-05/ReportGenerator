@@ -15,6 +15,7 @@ import Setting from './component/Setting';
 import SubMenuLevel2 from './component/SubMenuLevel2';
 import LayoutFormIndex from './component/LayoutFormIndex';
 import Hello from './component/Hello';
+import Home from './component/Home';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
         </div>
         <div className=' col-span-5 '>
           <Routes>
-            {/* <Route path="/" element={<Hello />} /> */}
+            <Route path="/" element={<Home />} />
             {/* <Route path="/pagelayout/:templateId/:groupId/:menuTempName/:menuTempCode" element={<PageLayComponent />} /> */}
             <Route path="/detailPage/:templateId/:groupId/:menuTempName/:menuTempCode" element={<DetailComponent />} />
             <Route path="/footerPage/:templateId/:groupId/:menuTempName/:menuTempCode" element={<FooterComponent />} />
