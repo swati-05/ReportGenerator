@@ -227,8 +227,8 @@ function PageLayComponentOld(props) {
 
                                                 <input
                                                     {...formik.getFieldProps('pageNo')}
-                                                    className={`${inputStyle} w-16`}
-                                                    type="text"
+                                                    className={`${inputStyle} w-10`}
+                                                    type="number"
                                                     name="pageNo"
 
                                                 />

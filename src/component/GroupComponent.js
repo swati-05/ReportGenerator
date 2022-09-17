@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Field, Formik } from 'formik';
 import axios from 'axios';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 
 const style = {
     position: 'absolute',
@@ -33,7 +34,7 @@ export default function GroupComponent() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Add Group</Button>
+            <Button onClick={handleOpen}><LibraryAddIcon/></Button>
             <Modal
                 open={open}
                 onClose={handleClose}
