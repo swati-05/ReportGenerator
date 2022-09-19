@@ -14,7 +14,7 @@ function DetailComponent(props) {
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
 
-    const [detailSqlValue, setdetailSqlValue] = useState()
+    // const [detailSqlValue, setdetailSqlValue] = useState()
     const [addDetailRecordTable, setAddDetailRecordTable] = useState([]);
     const [editStatus, setEditStatus] = useState(false)
     const [editIndex, setEditIndex] = useState()
@@ -157,7 +157,7 @@ function DetailComponent(props) {
                         <form onSubmit={formik.handleSubmit}>
                             <div className='w-full  text-center'>
                                 {/* <h1 className='text-teal-400'>Details component</h1> */}
-                                <table class=" bg-[#3371cd] text-black w-full ">
+                                <table class=" bg-[#1d4ca3] text-black w-full ">
                                     <tbody>
                                         <tr className={`${inputContainerStyleTr}`}>
                                             <td className={`${inputContainerStyleTd} `}>
@@ -255,7 +255,7 @@ function DetailComponent(props) {
 
 
                                             <td className={`${inputContainerStyleTd} border`}>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input  {...formik.getFieldProps('isUnderline')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
@@ -263,14 +263,14 @@ function DetailComponent(props) {
 
                                                     />
                                                     U </span>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input {...formik.getFieldProps('isBold')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
 
                                                     />
                                                     B </span>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input {...formik.getFieldProps('isItalic')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
@@ -288,7 +288,7 @@ function DetailComponent(props) {
                                             </td>
                                             <td className={`${inputContainerStyleTd} border `}>
 
-                                                <span className='text-amber-300 '>Alignment</span>
+                                                <span className='text-white'>Alignment</span>
 
                                                 <span>
                                                     <select  {...formik.getFieldProps('alignment')} className={`${inputStyle}  w-32`}>
@@ -304,7 +304,7 @@ function DetailComponent(props) {
                                             <td className={`${inputContainerStyleTd}border `}>
                                                 <div className='flex -ml-12  '>
                                                     <div className='flex-1  '>
-                                                        <p className='text-amber-300 '>Visibility</p>
+                                                        <p className='text-white'>Visibility</p>
                                                     </div>
                                                     <div className='flex-1  w-80 -ml-36 -mt-1 '>
                                                         <span>
@@ -319,7 +319,7 @@ function DetailComponent(props) {
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="submit" className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
+                                                <button type="submit" className="bg-green-400  shadow-xl px-8 py-1  ml-9 ">
                                                     Add
                                                 </button>
                                             </td>
@@ -331,13 +331,13 @@ function DetailComponent(props) {
 
                         </form>
 
-                        <div className='w-full'>
-                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                        {/* <div className='w-full'>
+                            <textarea className={`h-28 w-full border border-gray-200 mt-2 shadow-inner shadow-[#99baea]`} placeholder='sql query'
                                 name="detail_data"
                                 value={detailSqlValue} onChange={(e) => setdetailSqlValue(e.target.value)}
 
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
@@ -348,10 +348,10 @@ function DetailComponent(props) {
 
                     <div class=" bg-white  border-gray-200 border-t">
 
-                        <span class="font-semibold text-gray-800">Detail Records</span>
+                        <span class="font-semibold text-gray-500">Detail Records</span>
                         <div class="overflow-x-auto p-3">
                             <table class="table-auto w-full">
-                                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                                <thead class="text-xs font-semibold uppercase text-white bg-[#1d4ca3]">
                                     <tr>
                                         <th></th>
                                         <th></th>
@@ -542,7 +542,7 @@ function DetailComponent(props) {
 
                         <footer class="px-5 py-4 ">
                             <span className='float-right'>
-                                <button type="button" className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
+                                <button type="button" className='bg-[#074097] text-white px-5 py-1 my-2  ' onClick={SubmitPageRecord}>
                                     Save
                                 </button>
                             </span>

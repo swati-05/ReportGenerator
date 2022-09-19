@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Field, Formik, useFormik } from 'formik';
-import SideNav from './SideNav';
-import Design from './Design';
 import PageLayoutTable from './PageLayoutTable';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
@@ -10,19 +8,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function PageLayComponentOld(props) {
 
-
-
-
-    // const reportTemplate_id = templateId
-
     console.log('template id in page...', props.tempMenuId)
 
 
-    const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
+    const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black ')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
     const [inputContainerStyleTd, setinputContainerStyleTd] = useState('px-1 ')
 
-    const [layoutSqlValue, setlayoutSqlValue] = useState()
+    // const [layoutSqlValue, setlayoutSqlValue] = useState()
     const [addRecordTable, setAddRecordTable] = useState([]);
     const [editStatus, setEditStatus] = useState(false)
     const [editIndex, setEditIndex] = useState()
@@ -34,7 +27,7 @@ function PageLayComponentOld(props) {
         props.collectAllLayoutDataFun('layout', addRecordTable);
         // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
 
-        console.log("layout sql...", layoutSqlValue)
+        // console.log("layout sql...", layoutSqlValue)
         console.log('data from the form', setAddRecordTable);
         axios({
             method: "post",
@@ -156,7 +149,7 @@ function PageLayComponentOld(props) {
                     <div>
                         <form onSubmit={formik.handleSubmit} >
                             <div className='w-full  text-center '>
-                                <table class=" bg-[#3371cd] text-black w-full shadow-sm">
+                                <table class=" bg-[#1d4ca3] text-black w-full shadow-sm">
                                     <tbody>
                                         <tr className={`${inputContainerStyleTr}`}>
                                             <td className={`${inputContainerStyleTd} `}>
@@ -265,16 +258,16 @@ function PageLayComponentOld(props) {
 
 
                                             <td className={`${inputContainerStyleTd} border`}>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input  {...formik.getFieldProps('isUnderline')}
-                                                        className={`${inputStyle} bg-teal-300`}
+                                                        className={`${inputStyle} bg-teal-300 `}
                                                         type="checkbox"
 
 
                                                     />
 
                                                     U </span>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input {...formik.getFieldProps('isBold')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
@@ -282,7 +275,7 @@ function PageLayComponentOld(props) {
                                                     />
 
                                                     B </span>
-                                                <span>
+                                                <span className='text-white'>
                                                     <input {...formik.getFieldProps('isItalic')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
@@ -301,7 +294,7 @@ function PageLayComponentOld(props) {
 
                                             </td>
                                             <td className={`${inputContainerStyleTd} border `}>
-                                                <span className='text-amber-300 '>Alignment</span>
+                                                <span className='text-white '>Alignment</span>
                                                 <span>
                                                     <select  {...formik.getFieldProps('alignment')} className={`${inputStyle}  w-32`}>
                                                         <option value="left">Left</option>
@@ -314,7 +307,7 @@ function PageLayComponentOld(props) {
                                             <td className={`${inputContainerStyleTd}border `}>
                                                 <div className='flex -ml-12  '>
                                                     <div className='flex-1  '>
-                                                        <p className='text-amber-300 '>Visibility</p>
+                                                        <p className='text-white '>Visibility</p>
                                                     </div>
                                                     <div className='flex-1  w-80 -ml-36 -mt-1 '>
                                                         <span>
@@ -329,7 +322,7 @@ function PageLayComponentOld(props) {
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="submit" className="bg-red-500 rounded-lg shadow-xl px-8 py-1  ml-9 ">
+                                                <button type="submit" className="bg-green-400  shadow-xl px-8 py-1  ml-9 ">
                                                     Add
                                                 </button>
                                             </td>
@@ -340,28 +333,28 @@ function PageLayComponentOld(props) {
                             </div>
                         </form>
 
-
+{/* 
                         <div className='w-full'>
-                            <textarea className={`h-28 w-full border border-gray-200 mt-2 `} placeholder='sql query'
+                            <textarea className={`h-28 w-full border border-gray-200 shadow-inner shadow-[#99baea] mt-2  `} placeholder='sql query'
                                 name="layout_data"
                                 value={layoutSqlValue} onChange={(e) => setlayoutSqlValue(e.target.value)}
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>
 
 
                 {/* mapping data field and setting the view */}
-                <div className='py-6'>
+                <div className='py-6 '>
                     <div class="flex flex-col justify-center h-full border-b-2">
 
                         <div class=" bg-white  border-gray-200 border-t">
 
-                            <span class="font-semibold text-gray-800">Page Layout Records</span>
+                            <span class="font-semibold text-gray-500">Page Layout Records</span>
                             <div class="overflow-x-auto p-3">
                                 <table class="table-auto w-full">
-                                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                                    <thead class="text-xs font-semibold uppercase text-gray-50 bg-[#074097]">
                                         <tr>
                                             <th></th>
                                             <th></th>
@@ -553,7 +546,7 @@ function PageLayComponentOld(props) {
 
                             <footer class="px-5 py-4 ">
                                 <span className='float-right'>
-                                    <button type="button" className='bg-indigo-500 text-white px-5 py-1 my-2 rounded-lg' onClick={SubmitPageRecord}>
+                                    <button type="button" className='bg-[#074097] text-white px-5 py-1 my-2  ' onClick={SubmitPageRecord}>
                                         Save
                                     </button>
                                 </span>

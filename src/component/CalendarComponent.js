@@ -6,9 +6,8 @@ function CalendarComponent() {
 
     const [value, onChange] = useState(new Date());
     return (
-        <>
-          
-            <div className='w-80 bg-sky-200'>
+        <>         
+            <div className='w-96 shadow-lg bg-slate-50 text-[#074097] border-2 '>
                 <Calendar onChange={onChange} value={value} />
             </div>
         </>

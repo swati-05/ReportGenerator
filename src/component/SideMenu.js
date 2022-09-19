@@ -18,11 +18,11 @@ function SideMenu(props) {
     const [menuList, setmenuList] = useState([])
 
 
-    const [menuwidth, setMenuWidth] = useState('w-48')
+    // const [menuwidth, setMenuWidth] = useState('w-48')
 
-    const toggleMenu = () => {
-        menuwidth == 'w-48' ? setMenuWidth('w-12') : setMenuWidth('w-48')
-    }
+    // const toggleMenu = () => {
+    //     menuwidth == 'w-48' ? setMenuWidth('w-12') : setMenuWidth('w-48')
+    // }
 
     {/**** add template  ****/ }
 
@@ -64,15 +64,20 @@ function SideMenu(props) {
 
                 {/**** default template and passing value to MenuSideGroupList component ****/}
                 <div>
-                    <div className={`${menuwidth} h-screen  overflow-hidden shadow-lg border-4 shadow-[#074097] bg-[#074097]  `}  >
+                    <div className={`w-48 h-screen  overflow-hidden shadow-lg border-4 shadow-[#074097] bg-[#074097]  `}  >
 
                         <div>
-                            <span><button className='bg-[#074097] text-white h-10  text-sm w-full   float-right ' onClick={toggleMenu} > MENU
-                             </button></span>
-                             <Template/>
+                            <span></span>
+
 
                         </div>
-                         
+                        <div className='flex'>
+                            <div className='flex-1 text-white h-10  text-sm w-full p-4'>GROUP LIST</div>
+                            <div className='flex-1'><button className='bg-[#074097] '  > <Template />
+                            </button></div>
+
+                        </div>
+
                         <ul className=' '>
                             <li>
                                 <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>

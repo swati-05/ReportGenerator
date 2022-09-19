@@ -6,17 +6,18 @@ import Modal from '@mui/material/Modal';
 import { Field, Formik } from 'formik';
 import axios from 'axios';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 300,
+    width: 350,
     bgcolor: 'background.paper',
     border: '2px solid #ffff',
     boxShadow: 24,
-  
+
     p: 4,
 };
 
@@ -34,7 +35,7 @@ export default function GroupComponent() {
 
     return (
         <div>
-            <Button onClick={handleOpen}><LibraryAddIcon/></Button>
+            <Button onClick={handleOpen}><LibraryAddIcon /></Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -46,25 +47,25 @@ export default function GroupComponent() {
                         initialValues={{
                             searchGroup: '',
                             isReport: false,
-                          
+
                         }}
-           
-   
+
+
                         onSubmit={(values, { setSubmitting }) => {
-                            const data = {name:values.groupName,isReport:values.isReport,searchGroup:values.searchGroup}
+                            const data = { name: values.groupName, isReport: values.isReport, searchGroup: values.searchGroup }
                             setTimeout(() => {
                                 // alert(JSON.stringify(values, null, 2));
 
-                                
+
                                 axios({
                                     method: "post",
                                     url: "http://192.168.0.237:8000/api/group/save",
-                                  data: data
+                                    data: data
                                 })
                                     .then(function (response) {
                                         console.log("searchGroup", response.data);
                                     });
-                                console.log( "Group data", values.searchGroup, values.isReport)
+                                console.log("Group data", values.searchGroup, values.isReport)
                             }, 400);
                         }}
                     >
@@ -78,11 +79,15 @@ export default function GroupComponent() {
                             isSubmitting,
                         }) => (
                             <form onSubmit={handleSubmit}>
-                                <div>
-                                    <span>Group Name</span>
+                                <div className=''>                               
+                                    <div className='flex-1'>
+                                        <h6 className=' text-gray-600 font-semibold text-md ml-20'>ADD GROUP</h6>
+                                    </div>                      
+                                <div className='mt-2'>
+                                    <span className='text-sm'>Group Name</span>
                                     <span>
                                         <input
-                                            className='bg-slate-50 border-2'
+                                            className='text-sm w-48 ml-2 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]'
                                             id="searchGroup"
                                             name="searchGroup"
                                             type="text"
@@ -91,25 +96,25 @@ export default function GroupComponent() {
                                             value={values.searchGroup}
                                         /></span>
                                 </div>
-                                <div>
+                                <div className='mt-2'>
 
                                     <Field
                                         type="checkbox"
                                         name="isReport"
-                                        // value={values.isReport}
+                                    // value={values.isReport}
                                     />
-                                    <span className='ml-2'>Report</span>
+                                    <span className='ml-2 text-sm'>Report</span>
 
                                     {/* <Field
                                         className='ml-4'
                                         type="checkbox"
-                                        name="searchGroup"
-                                       
+                                        name="searchGroup"    
                                     />
                                     <span className='ml-2'>Searchable</span> */}
                                 </div>
                                 <div>
-                                    <button type='submit' className='bg-indigo-500 p-1 w-14 rounded-xl float-right'>Add</button>
+                                    <button type='submit' className='bg-[#074097] text-white h-8 w-16 right-8 text-sm float-right'><SaveAsIcon fontSize='small' />  save</button>
+                                </div>
                                 </div>
                             </form>
                         )}

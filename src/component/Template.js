@@ -15,7 +15,6 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: '50%',
     bgcolor: 'background.paper',
-
     boxShadow: 24,
     p: 8,
 };
@@ -38,6 +37,7 @@ export default function Template() {
     const SaveTemplate = () => {
         const data = { templateName: templateInputValue, templateCode: templateCodeValue, searchGroupId: searchGroupIdValue, detailLayout: selectTemplateTypeValue };
         alert("confirm")
+ 
         console.log('data from the form', data);
         axios({
             method: "post",
@@ -46,8 +46,6 @@ export default function Template() {
         })
             .then(function (response) {
                 console.log("templateListSave", response.data);
-
-
             });
     }
 
@@ -73,7 +71,7 @@ export default function Template() {
     console.log("tempData", templateInputValue, templateCodeValue, searchGroupIdValue, selectTemplateTypeValue)
     return (
         <div>
-            <Button onClick={handleOpen}><QueueIcon/></Button>
+            <Button onClick={handleOpen}><QueueIcon fontSize='large' /></Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -86,7 +84,7 @@ export default function Template() {
                         <div class=" ">
                             <img src='https://img.freepik.com/free-vector/blogging-illustration-concept_114360-821.jpg?w=740&t=st=1663411895~exp=1663412495~hmac=563b3b04bdfc2cf8a65b853dc0ce41c3ffe5d7223bf9fd063ab20b4ea61a5ae3' className='64' />
                             <button aria-label="Go to article" type="button" class=" w-full bg-[#074097] text-white h-12 right-8 -top-6" onClick={SaveTemplate}>
-                           <SaveAsIcon/>  SAVE
+                                <SaveAsIcon />  SAVE
                             </button>
 
                         </div>
@@ -112,7 +110,7 @@ export default function Template() {
                                         <span>Template Name</span>
                                     </div>
                                     <div className='flex-1'>
-                                        <input type="text" className='text-sm w-56  ml-2  h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' name='templateName' value={templateInputValue} onChange={(e) => setTemplateInputValue(e.target.value)} />
+                                        <input type="text" className='text-sm w-56  ml-2 p-1 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' name='templateName' value={templateInputValue} onChange={(e) => setTemplateInputValue(e.target.value)} />
                                     </div>
                                 </div>
                                 <div className='flex p-2'>
@@ -120,7 +118,7 @@ export default function Template() {
                                         <span>Template Code</span>
                                     </div>
                                     <div className='flex-1'>
-                                        <input type="text" className='text-sm w-56  ml-2  h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' name='templateCode' value={templateCodeValue} onChange={(e) => setTemplateCodeValue(e.target.value)} />
+                                        <input type="text" className='text-sm w-56  ml-2  p-1 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' name='templateCode' value={templateCodeValue} onChange={(e) => setTemplateCodeValue(e.target.value)} />
                                     </div>
                                 </div>
 
@@ -129,7 +127,7 @@ export default function Template() {
                                         <span>Template Type</span>
                                     </div>
                                     <div className='flex-1 -mt-6'>
-                                        <select className=' text-sm w-56  ml-2 mt-5 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' placeholder='select group' onChange={(e) => setSelectTemplateTypeValue(e.target.value)}>
+                                        <select className=' text-sm w-56 p-1 ml-2 mt-5 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]' placeholder='select group' onChange={(e) => setSelectTemplateTypeValue(e.target.value)}>
                                             <option  >select</option>
                                             <option value="General">General</option>
                                             <option value="Label">Label</option>
