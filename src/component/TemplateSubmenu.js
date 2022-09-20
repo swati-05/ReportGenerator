@@ -249,62 +249,65 @@ export default function TemplateSubmenu(props) {
     return (
 
         <>
-            <div className='float-right'>
-                <button className='bg-yellow-200 w-28  px-8 mt-2  py-1  ' onClick={showTemplate}>Preview</button>
-                {/* <button type='submit' className='bg-[#074097] w-28  px-8 mt-2  py-1  text-white ' onClick={submitAllData}> Save to Preview</button> */}
-                <button type='submit' className='bg-green-200 w-28 px-8 mt-2  py-1  ' onClick={submitAllData}> Submit</button>
-            </div>
 
-            <Box sx={{ width: '100%' }}>
+            <div>
 
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <button className='bg-yellow-200 w-28  px-8 mt-2  py-1 shadow-md ' onClick={showTemplate}>Preview</button>
+                <button type='submit' className='bg-green-200 w-28 px-8 mt-2  py-1 shadow-md ' onClick={submitAllData}> Submit</button>
+
+                <Box sx={{ width: '100%' }}>
+
+                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        {tabState == 3 && <>
+                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+
+                                <Tab label='Setting' {...a11yProps(0)} />
+                                <Tab label='layout' {...a11yProps(1)} />
+                                <Tab label='Details' {...a11yProps(2)} />
+                                <Tab label='Footer' {...a11yProps(3)} />
+                                {/* <Tab label='Preview' {...a11yProps(4)}  /> */}
+                            </Tabs>
+                        </>}
+                        {tabState == 1 && <>
+                            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                                <Tab label='Setting' {...a11yProps(0)} />
+                                <Tab label='layout' {...a11yProps(1)} />
+                                {/* <Tab label='Preview' {...a11yProps(2)} onClick={showTemplate} /> */}
+                            </Tabs>
+                        </>}
+                    </Box>
+
                     {tabState == 3 && <>
-                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-
-                            <Tab label='Setting' {...a11yProps(0)} />
-                            <Tab label='layout' {...a11yProps(1)} />
-                            <Tab label='Details' {...a11yProps(2)} />
-                            <Tab label='Footer' {...a11yProps(3)} />
-                            {/* <Tab label='Preview' {...a11yProps(4)}  /> */}
-                        </Tabs>
+                        <TabPanel value={value} index={0}>
+                            <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                        </TabPanel>
+                        <TabPanel value={value} index={2}>
+                            <DetailComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                        </TabPanel>
+                        <TabPanel value={value} index={3}>
+                            <FooterComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                        </TabPanel>
                     </>}
                     {tabState == 1 && <>
-                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                            <Tab label='Setting' {...a11yProps(0)} />
-                            <Tab label='layout' {...a11yProps(1)} />
-                            {/* <Tab label='Preview' {...a11yProps(2)} onClick={showTemplate} /> */}
-                        </Tabs>
+                        <TabPanel value={value} index={0}>
+                            <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
+                        </TabPanel>
                     </>}
                 </Box>
-
-                {tabState == 3 && <>
-                    <TabPanel value={value} index={0}>
-                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                    </TabPanel>
-                    <TabPanel value={value} index={2}>
-                        <DetailComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                    </TabPanel>
-                    <TabPanel value={value} index={3}>
-                        <FooterComponent collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                    </TabPanel>
-                </>}
-                {tabState == 1 && <>
-                    <TabPanel value={value} index={0}>
-                        <Setting collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuName={menuName} tempMenuCode={menuCode} tempLayoutType={menuType} groupId={groupId} />
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        <PageLayComponentOld collectAllLayoutDataFun={collectAllLayoutData} submitFun={submitButtonToggle} tempMenuId={menuId} />
-                    </TabPanel>
-                </>}
-            </Box>
-
+            </div>
             {/* {submitStatus && <div className="flex items-center justify-center"><button type="button" className="absolute bottom-40 mx-auto px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-xl hover:bg-blue-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Submit Form </button></div>} */}
 
+
+
+
             <div className={`${showPreview} h-full`}>
-                {/* <button type='submit' className='bg-yellow-200 w-28  px-8 mt-2  py-1  ' onClick={submitAllData}>Preview</button> */}
+                <button type='submit' className='bg-[#074097] w-28  px-8 mt-2  py-1  text-white '  onClick={submitAllData}>click</button>
                 <div className=' bg-gray-700 h-full'>
                     <object id="pdf" data={fileURL} type="application/pdf" width="100%" height="100%">
                         <p>Alternative text - include a link </p>

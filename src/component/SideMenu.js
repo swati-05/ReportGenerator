@@ -101,13 +101,6 @@ function SideMenu(props) {
 
                     </div>
                 </div>
-
-                {/**** add template  ****/}
-
-                <div className={` ${addNewTemplate ? '' : 'hidden'}     `}>
-
-
-                </div>
             </div>
         </>
     )

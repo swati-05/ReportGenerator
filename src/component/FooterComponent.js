@@ -25,23 +25,23 @@ function FooterComponent(props) {
 
 
 
-    const SubmitPageRecord = () => {
+    // const SubmitPageRecord = () => {
 
-        props.collectAllLayoutDataFun('footer', addFooterRecordTable);
-        // props.collectAllLayoutDataFun('footer_data', footerSqlValue);
-        console.log('data from footer', addFooterRecordTable);
+    //     props.collectAllLayoutDataFun('footer', addFooterRecordTable);
+    //     // props.collectAllLayoutDataFun('footer_data', footerSqlValue);
+    //     console.log('data from footer', addFooterRecordTable);
 
-        axios({
-            method: "post",
-            url: "http://192.168.0.237:8000/api/templateFtr/save",
-            data: addFooterRecordTable,
-        })
-            .then(function (response) {
-                console.log("post data", response.data);
+    //     axios({
+    //         method: "post",
+    //         url: "http://192.168.0.237:8000/api/templateFtr/save",
+    //         data: addFooterRecordTable,
+    //     })
+    //         .then(function (response) {
+    //             console.log("post data", response.data);
 
 
-            });
-    }
+    //         });
+    // }
 
     const formik = useFormik({
         initialValues: {
@@ -79,6 +79,7 @@ function FooterComponent(props) {
                 console.log('pageLayout component', values);
                 resetForm();
                 setAddFooterRecordTable([...addFooterRecordTable, values]);
+                props.collectAllLayoutDataFun('footer', addFooterRecordTable);
                 setSubmitting(false);
             }, 400);
         }
@@ -526,13 +527,13 @@ function FooterComponent(props) {
                             </table>
                         </div>
 
-                        <footer class="px-5 py-4 ">
+                        {/* <footer class="px-5 py-4 ">
                             <span className='float-right'>
                                 <button type="button" className='bg-[#074097] text-white px-5 py-1 my-2  ' onClick={SubmitPageRecord}>
-                                    Save
+                                    Save & Next
                                 </button>
                             </span>
-                        </footer>
+                        </footer> */}
 
                     </div>
 

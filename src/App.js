@@ -8,7 +8,6 @@ import SideNav from './component/SideNav';
 import Setting from './component/Setting';
 import LayoutFormIndex from './component/LayoutFormIndex';
 import Home from './component/Home';
-
 function App() {
 
 

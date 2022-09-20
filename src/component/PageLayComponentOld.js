@@ -22,23 +22,23 @@ function PageLayComponentOld(props) {
 
     console.log("mulitple form data ", addRecordTable);
 
-    const SubmitPageRecord = () => {
+    // const SubmitPageRecord = () => {
 
-        props.collectAllLayoutDataFun('layout', addRecordTable);
-        // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
+    //     props.collectAllLayoutDataFun('layout', addRecordTable);
+    //     // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
 
-        // console.log("layout sql...", layoutSqlValue)
-        console.log('data from the form', setAddRecordTable);
-        axios({
-            method: "post",
-            url: "http://192.168.0.237:8000/api/templatePL/save",
-            data: addRecordTable,
-        })
-            .then(function (response) {
-                console.log("post data", response.data);
+    //     // console.log("layout sql...", layoutSqlValue)
+    //     console.log('data from the form', setAddRecordTable);
+    //     axios({
+    //         method: "post",
+    //         url: "http://192.168.0.237:8000/api/templatePL/save",
+    //         data: addRecordTable,
+    //     })
+    //         .then(function (response) {
+    //             console.log("post data", response.data);
 
-            });
-    }
+    //         });
+    // }
 
     const formik = useFormik({
         initialValues: {
@@ -76,6 +76,7 @@ function PageLayComponentOld(props) {
                 console.log('pageLayout component', values);
                 resetForm();
                 setAddRecordTable([...addRecordTable, values]);
+                props.collectAllLayoutDataFun('layout',addRecordTable);
                 setSubmitting(false);
             }, 400);
         }
@@ -194,7 +195,7 @@ function PageLayComponentOld(props) {
                                                            handleFile
                                                         } className="form-control" /> */}
                                                 <input
-                                                    className={`${inputStyle}`}
+                                                    className={`${inputStyle} text-white`}
                                                     type="file"
                                                     name="resource"
                                                     placeholder='resource'
@@ -333,7 +334,7 @@ function PageLayComponentOld(props) {
                             </div>
                         </form>
 
-{/* 
+                        {/* 
                         <div className='w-full'>
                             <textarea className={`h-28 w-full border border-gray-200 shadow-inner shadow-[#99baea] mt-2  `} placeholder='sql query'
                                 name="layout_data"
@@ -544,13 +545,13 @@ function PageLayComponentOld(props) {
                                 </table>
                             </div>
 
-                            <footer class="px-5 py-4 ">
+                            {/* <footer class="px-5 py-4 ">
                                 <span className='float-right'>
                                     <button type="button" className='bg-[#074097] text-white px-5 py-1 my-2  ' onClick={SubmitPageRecord}>
-                                        Save
+                                        Save & Next
                                     </button>
                                 </span>
-                            </footer>
+                            </footer> */}
 
                         </div>
 

@@ -256,8 +256,14 @@ function Setting(props) {
                             <span className={`${labelStyle}`}>Paper Size</span>
 
                             <select {...formik.getFieldProps('paperSizeEnum')} className={`${labelStyle} border`}   >
-                                <option value="A4"> A4</option>
-                                <option value="A3"> A3</option>
+                                <option value="594,841"> A1</option>
+                                <option value="420,594"> A2</option>
+                                <option value="297,420"> A3</option>
+                                <option value="210,297"> A4</option>
+                                <option value="148,210"> A5</option>
+                                <option value="105,148"> A6</option>
+                                <option value="105,148"> A7</option>
+                                <option value="52,74"> A8</option>
                             </select>
 
                         </div>
@@ -312,7 +318,7 @@ function Setting(props) {
                     </div>
                 </div>
                 <div>
-                    <button type='buttonsubmit' className='bg-[#074097] px-8 mt-6  py-2 float-right  border text-white font-bold'>save</button>
+                    <button type='submit' className='bg-[#074097] px-8 mt-6  py-2 float-right  border text-white font-bold'>Add</button>
                 </div>
                 <div>
                     <button type='buttonsubmit' className='bg-[#074097] px-8 mt-6  py-2   border text-white '>Layout Query</button>
