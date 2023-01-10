@@ -1,3 +1,14 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - Setting
+//    DESCRIPTION - Setting Contains setting layout   
+//////////////////////////////////////////////////////////////////////////////////////
+
+
 import React, { useState } from 'react';
 import { Field, useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
@@ -11,16 +22,29 @@ function Setting(props) {
     console.log("group id in setting", props.groupId)
 
 
-
-    // const [layoutQuery, setlayoutQuery] = useState('hidden')
-    // layoutQuery == 'hidden' ? setlayoutQuery('') : setlayoutQuery('hidden')
-
-
     const [footerSqlValue, setfooterSqlValue] = useState()
     const [detailSqlValue, setdetailSqlValue] = useState()
     const [layoutSqlValue, setlayoutSqlValue] = useState()
     const [templateLayout, setTemplateLayout] = useState([])
     // console.log('collective form values : ', templateLayout);
+
+
+    const [layoutQuery, setlayoutQuery] = useState('hidden')
+
+    const openLayoutSql = () => {
+        layoutQuery == 'hidden' ? setlayoutQuery('') : setlayoutQuery('hidden')
+    }
+    const [detailQuery, setDetailQuery] = useState('hidden')
+
+    const openDetailSql = () => {
+        detailQuery == 'hidden' ? setDetailQuery('') : setDetailQuery('hidden')
+    }
+
+    const [footerQuery, setFooterQuery] = useState('hidden')
+
+    const openFooterSql = () => {
+        footerQuery == 'hidden' ? setFooterQuery(' ') : setFooterQuery('hidden')
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -57,18 +81,14 @@ function Setting(props) {
 
         },
     });
-    const inputStyle = "border px-2 py-1 rounded-sm shadow-sm";
+    const inputStyle = "border px-2 py-1 rounded-lg shadow-md";
     const labelStyle = "text-sm px-2  text-gray-600";
     return (
-
-
-
-        <div className='w-full p-5 text-sm text-gray-500 bg-[#e2e9f4]  shadow-[#99baea] hover:shadow-inner'>
+        <div className='w-full p-5 text-sm text-gray-500 bg-[#e2e9f4]  shadow-md'>
             <form onSubmit={formik.handleSubmit}>
 
                 {/* first grid */}
                 <div class="grid grid-cols-3 z-20 font-bold mb-3">
-
                     <div>
                         <span className={`${labelStyle}`}>Template Code</span>
                         <input
@@ -79,7 +99,6 @@ function Setting(props) {
                             value={props.tempMenuCode}
                         />
                     </div>
-
                     <div>
                         <span className={`${labelStyle}`}>Header Height</span>
                         <input
@@ -102,8 +121,6 @@ function Setting(props) {
                             value={formik.values.screenDisplayString}
                         />
                     </div>
-
-
                 </div>
                 {/* second grid */}
                 <div class="grid grid-cols-3 z-20 font-bold mb-3">
@@ -216,7 +233,6 @@ function Setting(props) {
                         />
                     </div>
                 </div>
-
                 {/* Fifth grid */}
                 <div class="grid grid-cols-4 z-20 font-bold mb-4">
                     <div>
@@ -229,8 +245,6 @@ function Setting(props) {
                             value="isRenderGlobalHeader"
                         />
                     </div>
-
-
                     <div>
                         <span className={`${labelStyle}`}>Show Grid Line</span>
                         <input
@@ -273,7 +287,6 @@ function Setting(props) {
                 </div>
                 {/* Sixth grid */}
                 <div class="grid grid-cols-4 z-20 font-bold mb-3">
-
                     <div>
                         <span className={`${labelStyle}`}>Compact Footer</span>
                         <input
@@ -321,32 +334,34 @@ function Setting(props) {
                     <button type='submit' className='bg-[#074097] px-8 mt-6  py-2 float-right  border text-white font-bold'>Add</button>
                 </div>
                 <div>
-                    <button type='buttonsubmit' className='bg-[#074097] px-8 mt-6  py-2   border text-white '>Layout Query</button>
-                    <button type='buttonsubmit' className='bg-[#074097] px-8 mt-6  py-2   border text-white '>Detail Query</button>
-                    <button type='buttonsubmit' className='bg-[#074097] px-8 mt-6  py-2   border text-white '>Footer Query</button>
+                    <button type='button' className='bg-[#074097] px-8 mt-6  py-2   border text-white ' onClick={openLayoutSql}>Layout Query</button>
+                    <button type='button' className='bg-[#074097] px-8 mt-6  py-2   border text-white ' onClick={openDetailSql}>Detail Query</button>
+                    <button type='button' className='bg-[#074097] px-8 mt-6  py-2   border text-white ' onClick={openFooterSql}>Footer Query</button>
                 </div>
-                <div className={` w-full`}>
+
+                
+                <div className={`${layoutQuery} w-full`}>
                     <textarea className={` h-28 w-full border border-gray-200 shadow-inner shadow-[#99baea] mt-2  `} placeholder='sql query'
                         name="layout_data"
                         value={layoutSqlValue} onChange={(e) => setlayoutSqlValue(e.target.value)}
                     />
                 </div>
-                <div className='w-full'>
+                <div className={`${detailQuery} w-full`}>
                     <textarea className={`h-28 w-full border border-gray-200 mt-2 shadow-inner shadow-[#99baea]`} placeholder='sql query'
                         name="detail_data"
                         value={detailSqlValue} onChange={(e) => setdetailSqlValue(e.target.value)}
-
                     />
                 </div>
-                <div className='w-full shadow-sm '>
+                <div className={`${footerQuery} w-full shadow-sm `}>
                     <textarea className={`h-28 w-full  border-gray-200 mt-2 shadow-inner shadow-[#99baea]`} placeholder='sql query'
                         name="detail_data"
                         value={footerSqlValue} onChange={(e) => setfooterSqlValue(e.target.value)}
-
                     />
                 </div>
             </form >
+
         </div >
+
     )
 }
 

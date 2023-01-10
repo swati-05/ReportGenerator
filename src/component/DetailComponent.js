@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - DetailComponent
+//    DESCRIPTION - DetailComponent Containds detail layout   
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useEffect, useState } from 'react'
 import { Field, Formik, useFormik } from 'formik';
 import axios from 'axios';
@@ -9,6 +19,7 @@ function DetailComponent(props) {
 
     console.log('template id in detail...', props.tempMenuId)
 
+    {/* Styling */ }
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
@@ -157,7 +168,9 @@ function DetailComponent(props) {
 
                         <form onSubmit={formik.handleSubmit}>
                             <div className='w-full  text-center'>
+
                                 {/* <h1 className='text-teal-400'>Details component</h1> */}
+
                                 <table class=" bg-[#1d4ca3] text-black w-full ">
                                     <tbody>
                                         <tr className={`${inputContainerStyleTr}`}>
@@ -331,14 +344,6 @@ function DetailComponent(props) {
                             </div>
 
                         </form>
-
-                        {/* <div className='w-full'>
-                            <textarea className={`h-28 w-full border border-gray-200 mt-2 shadow-inner shadow-[#99baea]`} placeholder='sql query'
-                                name="detail_data"
-                                value={detailSqlValue} onChange={(e) => setdetailSqlValue(e.target.value)}
-
-                            />
-                        </div> */}
                     </div>
                 </div>
 
@@ -346,9 +351,7 @@ function DetailComponent(props) {
             {/* mapping data field and setting the view */}
             <div className='py-6'>
                 <div class="flex flex-col justify-center h-full border-b-2">
-
                     <div class=" bg-white  border-gray-200 border-t">
-
                         <span class="font-semibold text-gray-500">Detail Records</span>
                         <div class="overflow-x-auto p-3">
                             <table class="table-auto w-full">
@@ -540,15 +543,6 @@ function DetailComponent(props) {
 
                             </table>
                         </div>
-
-                        {/* <footer class="px-5 py-4 ">
-                            <span className='float-right'>
-                                <button type="button" className='bg-[#074097] text-white px-5 py-1 my-2  ' onClick={SubmitPageRecord}>
-                                    Save & Next
-                                </button>
-                            </span>
-                        </footer> */}
-
                     </div>
 
                 </div>

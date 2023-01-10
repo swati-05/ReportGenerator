@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - FooterComponent
+//    DESCRIPTION - FooterComponent Containds footer layout   
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useEffect, useState } from 'react'
 import { Field, Formik, useFormik } from 'formik';
 import axios from 'axios';
@@ -10,6 +20,7 @@ function FooterComponent(props) {
     console.log('template id in footer...', props.tempMenuId)
 
 
+    {/* Styling */ }
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
@@ -144,7 +155,6 @@ function FooterComponent(props) {
 
     return (
         <>
-            {/* w-10/12 ml-56 -mt-[38.8rem] */}
             <div className='w-full'>
                 <div className=' w-full '>
                     <div>
@@ -179,11 +189,8 @@ function FooterComponent(props) {
                                                     {...formik.getFieldProps('fieldName')}
                                                     className={`${inputStyle}`}
                                                     type="text"
-
                                                     placeholder='Field Name'
-
                                                 />
-
                                             </td>
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input
@@ -191,19 +198,15 @@ function FooterComponent(props) {
                                                     type="file"
                                                     name="resource"
                                                     placeholder='resource'
-
                                                 />
                                             </td>
 
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input type="text" className={`${inputStyle} w-12`} placeholder='X'
                                                     {...formik.getFieldProps('x')}
-
                                                 />
-
                                                 <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='Y'
                                                     {...formik.getFieldProps('y')}
-
                                                 />
                                             </td>
 
@@ -229,10 +232,8 @@ function FooterComponent(props) {
                                         <tr className={`${inputContainerStyleTr} mL-4`}>
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input {...formik.getFieldProps('width')} type="text" className={`${inputStyle} w-12`} placeholder='H'
-
                                                 />
                                                 <input  {...formik.getFieldProps('height')} type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W'
-
                                                 />
                                             </td>
 
@@ -241,36 +242,27 @@ function FooterComponent(props) {
                                                     <option value="arial">Arial</option>
                                                     <option value="sans">Sans</option>
                                                     <option value="serif">Serif</option>
-
                                                 </select>
-
                                             </td>
-
-
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <span className='text-white'>
                                                     <input  {...formik.getFieldProps('isUnderline')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
-
-
                                                     />
                                                     U </span>
                                                 <span className='text-white'>
                                                     <input {...formik.getFieldProps('isBold')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
-
                                                     />
                                                     B </span>
                                                 <span className='text-white'>
                                                     <input {...formik.getFieldProps('isItalic')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
-
                                                     />
                                                     I </span>
-
                                                 <input
                                                     {...formik.getFieldProps('color')}
                                                     className='ml-4'
@@ -280,18 +272,14 @@ function FooterComponent(props) {
                                                 />
                                             </td>
                                             <td className={`${inputContainerStyleTd} border `}>
-
                                                 <span className='text-white'>Alignment</span>
-
                                                 <span>
                                                     <select  {...formik.getFieldProps('alignment')} className={`${inputStyle}  w-32`}>
                                                         <option value="left">Left</option>
                                                         <option value="right">Right</option>
                                                         <option value="center">Center</option>
-
                                                     </select>
                                                 </span>
-
                                             </td>
                                             <td className={`${inputContainerStyleTd}border `}>
                                                 <div className='flex -ml-12  '>
@@ -304,7 +292,6 @@ function FooterComponent(props) {
                                                                 {...formik.getFieldProps('isVisible')}
                                                                 className={`${inputStyle} bg-teal-300`}
                                                                 type="checkbox"
-
                                                             />
                                                         </span>
                                                     </div>

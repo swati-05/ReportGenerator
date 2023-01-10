@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - TemplateSubmenu
+//    DESCRIPTION - TemplateSubmenu component is the parent component of all layout where all layout data is collected submitted
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
@@ -166,19 +176,25 @@ export default function TemplateSubmenu(props) {
                 "footer": [],
                 "footer_data": ""
             },
-            // responseType: 'arraybuffer',
+
             headers: {
                 'Content-Type': 'application/json',
+                // responseType: 'blob',
                 Accept: 'application/pdf',
             }
         },)
             .then(function (response) {
-                console.log("all layout data", response.data);
+                console.log("pdf generate ..",response.data);
                 // var pdf= window.open("")
                 //         pdf.document.write("<iframe width='100%' height='100%'"+
                 //         " src='data:application/pdf;base64, " + encodeURI(response.data)+"'></iframe>")
 
                 setResponseData(response.data);
+
+
+                // let blob = new Blob([response.data], {type: 'application/pdf'})
+                // let url = URL.createObjectURL(blob)
+                // window.open(url);
             });
 
         // $.ajax({
@@ -217,41 +233,13 @@ export default function TemplateSubmenu(props) {
 
 
 
-    // const showPdf = () => {
-    //     var w = window.open('/', 'location=yes,height=800,width=700,scrollbars=yes,status=yes');
-
-    //     w.data = ResponseData;
-    //     // w.window.print();
-    // }
-
-
-    const file = new Blob([ResponseData], { type: 'application/pdf' });
-    const fileURL = URL.createObjectURL(file);
-    // window.open(fileURL);
-    console.log("pdf file ", file)
-
-
-    var reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-        const base64data = reader.result;
-        console.log("data pdf ...", base64data);
-
-        return;
-    }
-
-    // var w = window.open(mStr, '_blank', 'location=yes,height=800,width=700,scrollbars=yes,status=yes');
-    //     w.window.print();
 
 
 
     return (
 
         <>
-
             <div>
-
                 <button className='bg-yellow-200 w-28  px-8 mt-2  py-1 shadow-md ' onClick={showTemplate}>Preview</button>
                 <button type='submit' className='bg-green-200 w-28 px-8 mt-2  py-1 shadow-md ' onClick={submitAllData}> Submit</button>
 
@@ -307,11 +295,11 @@ export default function TemplateSubmenu(props) {
 
 
             <div className={`${showPreview} h-full`}>
-                <button type='submit' className='bg-[#074097] w-28  px-8 mt-2  py-1  text-white '  onClick={submitAllData}>click</button>
+                <button type='submit' className='bg-[#074097] w-28  px-8 mt-2  py-1  text-white ' onClick={submitAllData}>click</button>
                 <div className=' bg-gray-700 h-full'>
-                    <object id="pdf" data={fileURL} type="application/pdf" width="100%" height="100%">
+                    {/* <object id="pdf" data={fileURL} type="application/pdf" width="100%" height="100%">
                         <p>Alternative text - include a link </p>
-                    </object>
+                    </object> */}
                 </div>
             </div>
         </>

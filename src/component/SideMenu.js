@@ -1,11 +1,18 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - SideMenu
+//    DESCRIPTION - SideMenu Contains menu list  
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import MenuSideGroupList from './MenuSideGroupList'
 import GroupComponent from './GroupComponent'
-
 import Template from './Template';
-
-
 
 function SideMenu(props) {
 
@@ -30,11 +37,6 @@ function SideMenu(props) {
         addNewTemplate ? setaddNewTemplate(false) : setaddNewTemplate(true)
     }
 
-
-
-
-
-
     {/**** function to get menu i.e list of group in sidebar  ****/ }
 
 
@@ -54,10 +56,6 @@ function SideMenu(props) {
         getData()
     }, [])
 
-
-
-
-
     return (
         <>
             <div className=''>
@@ -68,16 +66,12 @@ function SideMenu(props) {
 
                         <div>
                             <span></span>
-
-
                         </div>
                         <div className='flex'>
                             <div className='flex-1 text-white h-10  text-sm w-full p-4'>GROUP LIST</div>
                             <div className='flex-1'><button className='bg-[#074097] '  > <Template />
                             </button></div>
-
                         </div>
-
                         <ul className=' '>
                             <li>
                                 <button className=" text-gray-500 font-semibold p-4 rounded inline-flex items-center " onClick={AddTemplate}>
@@ -86,7 +80,6 @@ function SideMenu(props) {
                                     </svg>
                                     <span className='ml-3 text-xs text-white hover:bg-sky-100 hover:text-[#074097]'>Default Template</span>
                                 </button>
-
                             </li>
                             {
                                 menuList?.map((data) => (
@@ -98,7 +91,6 @@ function SideMenu(props) {
                                 ))
                             }
                         </ul>
-
                     </div>
                 </div>
             </div>

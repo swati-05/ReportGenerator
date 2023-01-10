@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - Template
+//    DESCRIPTION - Template component here New template is created
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -20,8 +30,6 @@ const style = {
 };
 
 
-
-
 export default function Template() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,7 +45,7 @@ export default function Template() {
     const SaveTemplate = () => {
         const data = { templateName: templateInputValue, templateCode: templateCodeValue, searchGroupId: searchGroupIdValue, detailLayout: selectTemplateTypeValue };
         alert("confirm")
- 
+
         console.log('data from the form', data);
         axios({
             method: "post",
@@ -86,7 +94,6 @@ export default function Template() {
                             <button aria-label="Go to article" type="button" class=" w-full bg-[#074097] text-white h-12 right-8 -top-6" onClick={SaveTemplate}>
                                 <SaveAsIcon />  SAVE
                             </button>
-
                         </div>
                         <div class=" col-span-2">
                             <h1 className='text-gray-600 font-semibold text-xl'>CREATE TEMPLATE</h1>

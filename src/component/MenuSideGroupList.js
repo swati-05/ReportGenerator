@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - MenuSideGroupList
+//    DESCRIPTION - MenuSideGroupList component contain subMenu list passing from SideMenu Component
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 
@@ -7,14 +17,6 @@ function MenuSideGroupList(props) {
     const menuClick = () => {
         menuList == 'w-0' ? setmenuList('w-48') : setmenuList('w-0')
     }
-    // const [menuHeight, setmenuHeight] = useState('h-0')
-    // const toggleGroupMenuList = () => {
-    //     if (menuHeight == 'h-0') {
-    //         setmenuHeight('h-auto')
-    //     } else {
-    //         setmenuHeight('h-0')
-    //     }
-    // }
 
 
     // const getTemplateListByGroup = () => {

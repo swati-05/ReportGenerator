@@ -15,6 +15,7 @@ function App() {
   return (
 
     <div>
+ 
       <SideNav />
       <div className={`sm:w-10.5/12 transition-all  pl-4 pr-4 md:pl-8 -mt-[36rem] h-screen ml-48 `}>
         <Routes>

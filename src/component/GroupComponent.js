@@ -1,3 +1,13 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - GroupComponent
+//    DESCRIPTION - GroupComponent is used for adding group 
+//////////////////////////////////////////////////////////////////////////////////////
+
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -47,16 +57,11 @@ export default function GroupComponent() {
                         initialValues={{
                             searchGroup: '',
                             isReport: false,
-
                         }}
-
-
                         onSubmit={(values, { setSubmitting }) => {
                             const data = { name: values.groupName, isReport: values.isReport, searchGroup: values.searchGroup }
                             setTimeout(() => {
                                 // alert(JSON.stringify(values, null, 2));
-
-
                                 axios({
                                     method: "post",
                                     url: "http://192.168.0.237:8000/api/group/save",
@@ -79,42 +84,40 @@ export default function GroupComponent() {
                             isSubmitting,
                         }) => (
                             <form onSubmit={handleSubmit}>
-                                <div className=''>                               
+                                <div className=''>
                                     <div className='flex-1'>
                                         <h6 className=' text-gray-600 font-semibold text-md ml-20'>ADD GROUP</h6>
-                                    </div>                      
-                                <div className='mt-2'>
-                                    <span className='text-sm'>Group Name</span>
-                                    <span>
-                                        <input
-                                            className='text-sm w-48 ml-2 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]'
-                                            id="searchGroup"
-                                            name="searchGroup"
-                                            type="text"
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            value={values.searchGroup}
-                                        /></span>
-                                </div>
-                                <div className='mt-2'>
+                                    </div>
+                                    <div className='mt-2'>
+                                        <span className='text-sm'>Group Name</span>
+                                        <span>
+                                            <input
+                                                className='text-sm w-48 ml-2 h-7 shadow-md shadow-[#c0d2ed] border-[#074097]'
+                                                id="searchGroup"
+                                                name="searchGroup"
+                                                type="text"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.searchGroup}
+                                            /></span>
+                                    </div>
+                                    <div className='mt-2'>
 
-                                    <Field
-                                        type="checkbox"
-                                        name="isReport"
-                                    // value={values.isReport}
-                                    />
-                                    <span className='ml-2 text-sm'>Report</span>
-
-                                    {/* <Field
+                                        <Field
+                                            type="checkbox"
+                                            name="isReport"
+                                        />
+                                        <span className='ml-2 text-sm'>Report</span>
+                                        {/* <Field
                                         className='ml-4'
                                         type="checkbox"
                                         name="searchGroup"    
                                     />
                                     <span className='ml-2'>Searchable</span> */}
-                                </div>
-                                <div>
-                                    <button type='submit' className='bg-[#074097] text-white h-8 w-16 right-8 text-sm float-right'><SaveAsIcon fontSize='small' />  save</button>
-                                </div>
+                                    </div>
+                                    <div>
+                                        <button type='submit' className='bg-[#074097] text-white h-8 w-16 right-8 text-sm float-right'><SaveAsIcon fontSize='small' />  save</button>
+                                    </div>
                                 </div>
                             </form>
                         )}

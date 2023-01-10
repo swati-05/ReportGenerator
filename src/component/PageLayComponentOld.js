@@ -1,3 +1,14 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//    Author - swati sharma
+//    Version - 1.0
+//    Date - 23-09-2022
+//    Revision - 1
+//    Project - JUIDCO
+//    Component  - PageLayComponentOld
+//    DESCRIPTION - PageLayComponentOld component  contains page layout
+//////////////////////////////////////////////////////////////////////////////////////
+
+
 import React, { useEffect, useState } from 'react'
 import { Field, Formik, useFormik } from 'formik';
 import PageLayoutTable from './PageLayoutTable';
@@ -10,6 +21,7 @@ function PageLayComponentOld(props) {
 
     console.log('template id in page...', props.tempMenuId)
 
+    {/* Styling */ }
 
     const [inputStyle, setinputStyle] = useState('m-1 px-1  py-1 text-black ')
     const [inputContainerStyleTr, setinputContainerStyleTr] = useState('mx-auto text-xs border-b')
@@ -26,7 +38,6 @@ function PageLayComponentOld(props) {
 
     //     props.collectAllLayoutDataFun('layout', addRecordTable);
     //     // props.collectAllLayoutDataFun('layout_data', layoutSqlValue);
-
     //     // console.log("layout sql...", layoutSqlValue)
     //     console.log('data from the form', setAddRecordTable);
     //     axios({
@@ -76,7 +87,7 @@ function PageLayComponentOld(props) {
                 console.log('pageLayout component', values);
                 resetForm();
                 setAddRecordTable([...addRecordTable, values]);
-                props.collectAllLayoutDataFun('layout',addRecordTable);
+                props.collectAllLayoutDataFun('layout', addRecordTable);
                 setSubmitting(false);
             }, 400);
         }
@@ -98,8 +109,6 @@ function PageLayComponentOld(props) {
     }
 
 
-
-
     const editOwnerList = () => {
         let tempRecord = [...addRecordTable]  //copying the array
         console.log('edit index is ', editIndex)
@@ -108,8 +117,6 @@ function PageLayComponentOld(props) {
         setAddRecordTable(tempRecord) //setting value in origin ownlist array
         setEditStatus(false) //seting edit status false after successfull edit
     }
-
-
 
     const editRecord = (index) => {
 
@@ -140,9 +147,6 @@ function PageLayComponentOld(props) {
     }
 
 
-
-
-
     return (
         <>
             <div className='w-full'>
@@ -163,7 +167,6 @@ function PageLayComponentOld(props) {
                                                     <option value="param">Param</option>
                                                     <option value="captionWR">CaptionWR</option>
                                                 </select>
-
                                             </td>
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input
@@ -173,18 +176,14 @@ function PageLayComponentOld(props) {
 
                                                     placeholder='caption'
                                                 />
-
                                             </td>
                                             <td className={`${inputContainerStyleTd}border `}>
                                                 <input
                                                     {...formik.getFieldProps('fieldName')}
                                                     className={`${inputStyle}`}
                                                     type="text"
-
                                                     placeholder='Field Name'
-
                                                 />
-
                                             </td>
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 {/* <input id="file" name="file" type="file" onChange={(event) => {
@@ -199,92 +198,63 @@ function PageLayComponentOld(props) {
                                                     type="file"
                                                     name="resource"
                                                     placeholder='resource'
-
                                                 />
-
                                             </td>
-
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input type="text" className={`${inputStyle} w-12`} placeholder='X'
                                                     {...formik.getFieldProps('x')}
-
                                                 />
-
                                                 <input type="text" className={`${inputStyle} w-12 ml-6`} placeholder='Y'
                                                     {...formik.getFieldProps('y')}
-
                                                 />
-
                                             </td>
-
                                             <td className={`${inputContainerStyleTd} border`}>
-
                                                 <input
                                                     {...formik.getFieldProps('pageNo')}
                                                     className={`${inputStyle} w-10`}
                                                     type="number"
                                                     name="pageNo"
-
                                                 />
-
                                                 <select  {...formik.getFieldProps('fontSize')} className={`${inputStyle} `}>
                                                     <option value="">Font Size</option>
                                                     <option value="5">5</option>
                                                     <option value="10">10</option>
-
                                                 </select>
                                             </td>
                                         </tr>
                                         <tr className={`${inputContainerStyleTr} mL-4`}>
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <input {...formik.getFieldProps('width')} type="text" className={`${inputStyle} w-12`} placeholder='H'
-
                                                 />
-
                                                 <input  {...formik.getFieldProps('height')} type="text" className={`${inputStyle} w-12 ml-6`} placeholder='W'
-
                                                 />
-
                                             </td>
-
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <select {...formik.getFieldProps('fontName')} className={`${inputStyle}  w-32`}>
                                                     <option value="arial">Arial</option>
                                                     <option value="sans">Sans</option>
                                                     <option value="serif">Serif</option>
-
                                                 </select>
-
                                             </td>
-
-
                                             <td className={`${inputContainerStyleTd} border`}>
                                                 <span className='text-white'>
                                                     <input  {...formik.getFieldProps('isUnderline')}
                                                         className={`${inputStyle} bg-teal-300 `}
                                                         type="checkbox"
-
-
                                                     />
-
                                                     U </span>
                                                 <span className='text-white'>
                                                     <input {...formik.getFieldProps('isBold')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
-
                                                     />
-
                                                     B </span>
                                                 <span className='text-white'>
                                                     <input {...formik.getFieldProps('isItalic')}
                                                         className={`${inputStyle} bg-teal-300`}
                                                         type="checkbox"
-
                                                     />
-
                                                     I </span>
-
                                                 <input
                                                     {...formik.getFieldProps('color')}
                                                     className='ml-4'
@@ -292,7 +262,6 @@ function PageLayComponentOld(props) {
 
                                                     id="color"
                                                 />
-
                                             </td>
                                             <td className={`${inputContainerStyleTd} border `}>
                                                 <span className='text-white '>Alignment</span>
@@ -316,7 +285,6 @@ function PageLayComponentOld(props) {
                                                                 {...formik.getFieldProps('isVisible')}
                                                                 className={`${inputStyle} bg-teal-300`}
                                                                 type="checkbox"
-
                                                             />
                                                         </span>
                                                     </div>
@@ -333,18 +301,8 @@ function PageLayComponentOld(props) {
                                 </table>
                             </div>
                         </form>
-
-                        {/* 
-                        <div className='w-full'>
-                            <textarea className={`h-28 w-full border border-gray-200 shadow-inner shadow-[#99baea] mt-2  `} placeholder='sql query'
-                                name="layout_data"
-                                value={layoutSqlValue} onChange={(e) => setlayoutSqlValue(e.target.value)}
-                            />
-                        </div> */}
                     </div>
-
                 </div>
-
 
                 {/* mapping data field and setting the view */}
                 <div className='py-6 '>
